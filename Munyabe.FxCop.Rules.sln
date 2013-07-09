@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Munyabe.FxCop.Rules", "Munyabe.FxCop.Rules\Munyabe.FxCop.Rules.csproj", "{EDF4684E-8A39-46B1-8842-9B9DB67268D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReferenceAssemblies", "ReferenceAssemblies", "{2F8790A6-D2D0-4095-814C-C4B29EA48C15}"
+	ProjectSection(SolutionItems) = preProject
+		ReferenceAssemblies\FxCopSdk.dll = ReferenceAssemblies\FxCopSdk.dll
+		ReferenceAssemblies\Microsoft.Cci.dll = ReferenceAssemblies\Microsoft.Cci.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTarget", "TestTarget\TestTarget.csproj", "{9379AB2D-6BF0-4A21-A718-BF51BC6C9EE3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDF4684E-8A39-46B1-8842-9B9DB67268D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDF4684E-8A39-46B1-8842-9B9DB67268D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDF4684E-8A39-46B1-8842-9B9DB67268D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDF4684E-8A39-46B1-8842-9B9DB67268D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9379AB2D-6BF0-4A21-A718-BF51BC6C9EE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9379AB2D-6BF0-4A21-A718-BF51BC6C9EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9379AB2D-6BF0-4A21-A718-BF51BC6C9EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9379AB2D-6BF0-4A21-A718-BF51BC6C9EE3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

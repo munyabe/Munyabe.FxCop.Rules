@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Rules FriendlyName="Munyabe FxCop Rules">
+  <Rule CheckId="MU0001"
+        TypeName="AvoidUsingEnumerableCount"
+        Category="Munyabe.Performance">
+    <Name>Avoid using Enumerable.Count</Name>
+    <Description>Enumerable.Count can't use in Array or ICollection`1 instance.</Description>
+    <Owner>munyabe</Owner>
+    <Email></Email>
+    <Url>https://github.com/munyabe/Munyabe.FxCop.Rules</Url>
+    <Resolution Name="Array">Use Length proprety.</Resolution>
+    <Resolution Name="ICollection">Use Count proprety.</Resolution>
+    <MessageLevel Certainty="95">Warning</MessageLevel>
+    <FixCategories>Breaking</FixCategories>
+  </Rule>
+</Rules>
