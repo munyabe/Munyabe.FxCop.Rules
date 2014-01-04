@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Rules FriendlyName="Munyabe FxCop Rules">
   <Rule CheckId="MU0001"
-        TypeName="AvoidUsingEnumerableCount"
+        TypeName="AvoidUnnecessaryEnumerableCount"
         Category="Munyabe.Performance">
-    <Name>Avoid using Enumerable.Count</Name>
-    <Description>Enumerable.Count can't use in Array or ICollection`1 instance.</Description>
+    <Name>Avoid unnecessary Enumerable.Count</Name>
+    <Description>Avoid Enumerable.Count in Array or ICollection`1 instance.</Description>
     <Owner>munyabe</Owner>
     <Email></Email>
     <Url>https://github.com/munyabe/Munyabe.FxCop.Rules</Url>

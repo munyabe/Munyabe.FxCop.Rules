@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseRule.cs" />
-    <Compile Include="Performance\AvoidUsingEnumerableCount.cs" />
+    <Compile Include="Performance\AvoidUnnecessaryEnumerableCount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace TestTarget.Performance
+namespace CodeAnalysisTestTarget.Performance
 {
-    public static class AvoidUsingEnumerableCountTarget
+    public static class AvoidUnnecessaryEnumerableCountTarget
     {
         public static void OK()
         {
