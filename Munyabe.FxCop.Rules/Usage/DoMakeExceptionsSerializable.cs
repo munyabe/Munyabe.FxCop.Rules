@@ -4,7 +4,7 @@ using Munyabe.FxCop.Util;
 namespace Munyabe.FxCop.Usage
 {
     /// <summary>
-    /// <see cref="DoMakeExceptionsSerializable"/>を検出する解析ルールです。
+    /// シリアル化可能でない例外を検出する解析ルールです。
     /// </summary>
     public class DoMakeExceptionsSerializable : BaseRule
     {

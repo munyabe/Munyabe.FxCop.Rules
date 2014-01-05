@@ -4,7 +4,7 @@ using Microsoft.FxCop.Sdk;
 namespace Munyabe.FxCop.Performance
 {
     /// <summary>
-    /// <see cref="AvoidUnnecessaryEnumerableCount"/>の解析ルールです。
+    /// 不要な<see cref="Enumerable.Count"/>の呼び出しを検出する解析ルールです。
     /// </summary>
     public class AvoidUnnecessaryEnumerableCount : BaseRule
     {
@@ -18,6 +18,18 @@ namespace Munyabe.FxCop.Performance
         public AvoidUnnecessaryEnumerableCount()
             : base("AvoidUnnecessaryEnumerableCount")
         {
+        }
+
+        /// <inheritdoc />
+        public override void BeforeAnalysis()
+        {
+            _countMethod = GetCountMethod();
+        }
+
+        /// <inheritdoc />
+        public override void AfterAnalysis()
+        {
+            _countMethod = null;
         }
 
         /// <inheritdoc />
@@ -39,22 +51,6 @@ namespace Munyabe.FxCop.Performance
             {
                 Problems.Add(new Problem(GetNamedResolution(resolutionName)));
             }
-
-            base.VisitMethodCall(call);
-        }
-
-        /// <inheritdoc />
-        public override void BeforeAnalysis()
-        {
-            base.BeforeAnalysis();
-            _countMethod = GetCountMethod();
-        }
-
-        /// <inheritdoc />
-        public override void AfterAnalysis()
-        {
-            _countMethod = null;
-            base.AfterAnalysis();
         }
 
         /// <summary>
