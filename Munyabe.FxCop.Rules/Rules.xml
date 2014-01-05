@@ -1,8 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Rules FriendlyName="Munyabe FxCop Rules">
-  <Rule CheckId="MU0001"
-        TypeName="AvoidUnnecessaryEnumerableCount"
-        Category="Munyabe.Performance">
+  <Rule Category="Munyabe.Performance" CheckId="MU1000" TypeName="AvoidUnnecessaryEnumerableCount">
     <Name>Avoid unnecessary Enumerable.Count</Name>
     <Description>Avoid Enumerable.Count in Array or ICollection`1 instance.</Description>
     <Owner>munyabe</Owner>
@@ -12,5 +10,15 @@
     <Resolution Name="ICollection">Use Count proprety.</Resolution>
     <MessageLevel Certainty="95">Warning</MessageLevel>
     <FixCategories>Breaking</FixCategories>
+  </Rule>
+  <Rule Category="Munyabe.Usage" CheckId="MU1100" TypeName="DoMakeExceptionsSerializable">
+    <Name>Do make exceptions serializable</Name>
+    <Description>Do make exceptions serializable. An exception must be serializable to work correctly across application domain and remoting boundaries.</Description>
+    <Owner>munyabe</Owner>
+    <Email></Email>
+    <Url>http://msdn.microsoft.com/library/ms229064.aspx</Url>
+    <Resolution>Marked a class which inherits the Exception with the Serializable attribute.</Resolution>
+    <MessageLevel Certainty="95">Warning</MessageLevel>
+    <FixCategories>NonBreaking</FixCategories>
   </Rule>
 </Rules>

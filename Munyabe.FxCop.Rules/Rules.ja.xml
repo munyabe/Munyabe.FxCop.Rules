@@ -1,9 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Rules FriendlyName="パフォーマンス規則">
-  <Rule CheckId="MU0001"
-        TypeName="AvoidUnnecessaryEnumerableCount"
-        Category="Munyabe.Performance">
-    <Name>不要な Enumerable.Count を呼び出さないでください。</Name>
+<Rules FriendlyName="Munyabe FxCop Rules">
+  <Rule Category="Munyabe.Performance" CheckId="MU1000" TypeName="AvoidUnnecessaryEnumerableCount">
+    <Name>不要な Enumerable.Count を呼び出さないでください</Name>
     <Description>配列や ICollection では Enumerable.Count を使用しないでください。</Description>
     <Owner>munyabe</Owner>
     <Email></Email>
@@ -12,5 +10,15 @@
     <Resolution Name="ICollection">Count プロパティを使用してください。</Resolution>
     <MessageLevel Certainty="95">Warning</MessageLevel>
     <FixCategories>Breaking</FixCategories>
+  </Rule>
+  <Rule Category="Munyabe.Usage" CheckId="MU1100" TypeName="DoMakeExceptionsSerializable">
+    <Name>例外をシリアル化可能にします</Name>
+    <Description>例外をシリアル化可能にします。アプリケーションドメインやリモート処理境界を越えて適切に例外を動作させるには、シリアル化可能にする必要があります。</Description>
+    <Owner>munyabe</Owner>
+    <Email></Email>
+    <Url>http://msdn.microsoft.com/library/ms229064.aspx</Url>
+    <Resolution>Exception を継承するクラスは Serializable 属性を付与してください。</Resolution>
+    <MessageLevel Certainty="95">Warning</MessageLevel>
+    <FixCategories>NonBreaking</FixCategories>
   </Rule>
 </Rules>

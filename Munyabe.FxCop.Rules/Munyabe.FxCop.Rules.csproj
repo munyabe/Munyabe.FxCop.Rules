@@ -54,6 +54,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Usage\DoMakeExceptionsSerializable.cs" />
+    <Compile Include="Util\Guard.cs" />
+    <Compile Include="Util\TypeNodeExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
