@@ -11,6 +11,16 @@
     <MessageLevel Certainty="95">Warning</MessageLevel>
     <FixCategories>Breaking</FixCategories>
   </Rule>
+  <Rule Category="Munyabe.Performance" CheckId="MU1101" TypeName="AvoidEnumGetHashCode">
+    <Name>Enum.GetHashCode を使用しないでください</Name>
+    <Description>Enum.GetHashCode はコストが高いため、使用しないでください。</Description>
+    <Owner>munyabe</Owner>
+    <Email></Email>
+    <Url>https://github.com/munyabe/Munyabe.FxCop.Rules</Url>
+    <Resolution>Int32 にキャストしてから GetHashCode を呼び出してください。</Resolution>
+    <MessageLevel Certainty="95">Warning</MessageLevel>
+    <FixCategories>NonBreaking</FixCategories>
+  </Rule>
   <Rule Category="Munyabe.Usage" CheckId="MU1100" TypeName="DoMakeExceptionsSerializable">
     <Name>例外をシリアル化可能にします</Name>
     <Description>例外をシリアル化可能にします。アプリケーションドメインやリモート処理境界を越えて適切に例外を動作させるには、シリアル化可能にする必要があります。</Description>

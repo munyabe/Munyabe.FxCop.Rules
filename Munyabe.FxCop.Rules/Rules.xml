@@ -11,6 +11,16 @@
     <MessageLevel Certainty="95">Warning</MessageLevel>
     <FixCategories>Breaking</FixCategories>
   </Rule>
+  <Rule Category="Munyabe.Performance" CheckId="MU1101" TypeName="AvoidEnumGetHashCode">
+    <Name>Avoid calling Enum.GetHashCode</Name>
+    <Description>Avoid calling Enum.GetHashCode, since This method requires a cost.</Description>
+    <Owner>munyabe</Owner>
+    <Email></Email>
+    <Url>https://github.com/munyabe/Munyabe.FxCop.Rules</Url>
+    <Resolution>Call GetHashCode after casting to Int32.</Resolution>
+    <MessageLevel Certainty="95">Warning</MessageLevel>
+    <FixCategories>NonBreaking</FixCategories>
+  </Rule>
   <Rule Category="Munyabe.Usage" CheckId="MU1100" TypeName="DoMakeExceptionsSerializable">
     <Name>Do make exceptions serializable</Name>
     <Description>Do make exceptions serializable. An exception must be serializable to work correctly across application domain and remoting boundaries.</Description>
