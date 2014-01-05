@@ -1,7 +1,7 @@
 ﻿using Microsoft.FxCop.Sdk;
 using Munyabe.FxCop.Util;
 
-namespace Munyabe.FxCop.Usage
+namespace Munyabe.FxCop.Design
 {
     /// <summary>
     /// シリアル化可能でない例外を検出する解析ルールです。
@@ -19,7 +19,7 @@ namespace Munyabe.FxCop.Usage
         /// <inheritdoc />
         public override ProblemCollection Check(TypeNode type)
         {
-            if (type.IsAssignableTo(FrameworkTypes.Exception) && type.HasTypeFlags(TypeFlags.Abstract) == false && type.HasTypeFlags(TypeFlags.Serializable) == false)
+            if (type.IsAssignableTo(FrameworkTypes.Exception) && type.IsAbstract == false && RuleUtilities.IsSerializable(type) == false)
             {
                 Problems.Add(new Problem(GetResolution()));
             }

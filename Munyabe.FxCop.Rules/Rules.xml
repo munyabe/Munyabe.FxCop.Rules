@@ -21,7 +21,7 @@
     <MessageLevel Certainty="95">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>
   </Rule>
-  <Rule Category="Munyabe.Usage" CheckId="MU1100" TypeName="DoMakeExceptionsSerializable">
+  <Rule Category="Munyabe.Design" CheckId="MU1100" TypeName="DoMakeExceptionsSerializable">
     <Name>Do make exceptions serializable</Name>
     <Description>Do make exceptions serializable. An exception must be serializable to work correctly across application domain and remoting boundaries.</Description>
     <Owner>munyabe</Owner>

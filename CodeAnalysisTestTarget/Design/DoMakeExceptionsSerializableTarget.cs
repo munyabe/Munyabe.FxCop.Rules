@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CodeAnalysisTestTarget.Usage
+namespace CodeAnalysisTestTarget.Design
 {
     public static class DoMakeExceptionsSerializableTarget
     {

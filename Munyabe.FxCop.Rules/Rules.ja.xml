@@ -21,7 +21,7 @@
     <MessageLevel Certainty="95">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>
   </Rule>
-  <Rule Category="Munyabe.Usage" CheckId="MU1100" TypeName="DoMakeExceptionsSerializable">
+  <Rule Category="Munyabe.Design" CheckId="MU1100" TypeName="DoMakeExceptionsSerializable">
     <Name>例外をシリアル化可能にします</Name>
     <Description>例外をシリアル化可能にします。アプリケーションドメインやリモート処理境界を越えて適切に例外を動作させるには、シリアル化可能にする必要があります。</Description>
     <Owner>munyabe</Owner>
