@@ -29,9 +29,19 @@
     <Resolution Name="Array">Length プロパティを使用してください。</Resolution>
     <Resolution Name="ICollection">Count プロパティを使用してください。</Resolution>
     <MessageLevel Certainty="95">Warning</MessageLevel>
-    <FixCategories>Breaking</FixCategories>
+    <FixCategories>NonBreaking</FixCategories>
   </Rule>
-  <Rule Category="Munyabe.Performance" CheckId="MU1801" TypeName="AvoidEnumGetHashCode">
+  <Rule Category="Munyabe.Performance" CheckId="MU1801" TypeName="DoNotCompareEnumerableCountToZero">
+    <Name>Enumerable.Count の結果を0と比較しないでください</Name>
+    <Description>Enumerable.Count の結果を0と比較すると、不要な列挙が実行される可能性があります。</Description>
+    <Owner>munyabe</Owner>
+    <Email></Email>
+    <Url>https://github.com/munyabe/Munyabe.FxCop.Rules</Url>
+    <Resolution>Enumerable.Any を使用してください。</Resolution>
+    <MessageLevel Certainty="95">Warning</MessageLevel>
+    <FixCategories>NonBreaking</FixCategories>
+  </Rule>
+  <Rule Category="Munyabe.Performance" CheckId="MU1802" TypeName="AvoidEnumGetHashCode">
     <Name>Enum.GetHashCode を使用しないでください</Name>
     <Description>Enum.GetHashCode はコストが高いため、使用しないでください。</Description>
     <Owner>munyabe</Owner>

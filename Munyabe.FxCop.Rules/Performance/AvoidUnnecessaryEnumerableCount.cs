@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Microsoft.FxCop.Sdk;
+using Munyabe.FxCop.Util;
 
 namespace Munyabe.FxCop.Performance
 {
@@ -23,7 +24,7 @@ namespace Munyabe.FxCop.Performance
         /// <inheritdoc />
         public override void BeforeAnalysis()
         {
-            _countMethod = GetCountMethod();
+            _countMethod = EnumerableAnalyst.GetCountMethod();
         }
 
         /// <inheritdoc />
@@ -47,43 +48,10 @@ namespace Munyabe.FxCop.Performance
         public override void VisitMethodCall(MethodCall call)
         {
             string resolutionName;
-            if (IsCountCall(call) && IsWrongCall(call, out resolutionName))
+            if (call.IsCall(_countMethod) && IsWrongCall(call, out resolutionName))
             {
                 Problems.Add(CreateProblem(resolutionName, call));
             }
-        }
-
-        /// <summary>
-        /// <see cref="Enumerable.Count"/>のインスタンスを取得します。
-        /// </summary>
-        private static Method GetCountMethod()
-        {
-            var paramType = FrameworkTypes.GenericIEnumerable;
-
-            return FrameworkAssemblies.SystemCore.GetType(Identifier.For("System.Linq"), Identifier.For("Enumerable"))
-                .GetMembersNamed(Identifier.For("Count"))
-                .OfType<Method>()
-                .FirstOrDefault(method => method.Parameters.Count == 1 && method.Parameters[0].Type.IsAssignableToInstanceOf(paramType));
-        }
-
-        /// <summary>
-        /// <see cref="Enumerable.Count"/>の呼び出しかどうかを判定します。
-        /// </summary>
-        private static bool IsCountCall(MethodCall call)
-        {
-            var member = call.Callee as MemberBinding;
-            if (member == null)
-            {
-                return false;
-            }
-
-            var method = member.BoundMember as Method;
-            if (method == null)
-            {
-                return false;
-            }
-
-            return method.Template == _countMethod;
         }
 
         /// <summary>

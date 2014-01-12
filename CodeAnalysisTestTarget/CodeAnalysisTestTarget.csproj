@@ -43,6 +43,7 @@
     <Compile Include="Maintainability\MarkPrivateFieldsAsReadOnlyTarget.cs" />
     <Compile Include="Performance\AvoidEnumGetHashCodeTarget.cs" />
     <Compile Include="Performance\AvoidUnnecessaryEnumerableCountTarget.cs" />
+    <Compile Include="Performance\DoNotCompareEnumerableCountToZeroTarget.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Design\DoMakeExceptionsSerializableTarget.cs" />
   </ItemGroup>

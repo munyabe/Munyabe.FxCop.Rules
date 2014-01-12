@@ -29,11 +29,21 @@
     <Resolution Name="Array">Use Length proprety.</Resolution>
     <Resolution Name="ICollection">Use Count proprety.</Resolution>
     <MessageLevel Certainty="95">Warning</MessageLevel>
-    <FixCategories>Breaking</FixCategories>
+    <FixCategories>NonBreaking</FixCategories>
   </Rule>
-  <Rule Category="Munyabe.Performance" CheckId="MU1801" TypeName="AvoidEnumGetHashCode">
+  <Rule Category="Munyabe.Performance" CheckId="MU1801" TypeName="DoNotCompareEnumerableCountToZero">
+    <Name>Do not compare Enumerable.Count to zero</Name>
+    <Description>If you compare Enumerable.Count to zero, an unnecessary enumeration may be executed.</Description>
+    <Owner>munyabe</Owner>
+    <Email></Email>
+    <Url>https://github.com/munyabe/Munyabe.FxCop.Rules</Url>
+    <Resolution>Use Enumerable.Any.</Resolution>
+    <MessageLevel Certainty="95">Warning</MessageLevel>
+    <FixCategories>NonBreaking</FixCategories>
+  </Rule>
+  <Rule Category="Munyabe.Performance" CheckId="MU1802" TypeName="AvoidEnumGetHashCode">
     <Name>Avoid calling Enum.GetHashCode</Name>
-    <Description>Avoid calling Enum.GetHashCode, since This method requires a cost.</Description>
+    <Description>Avoid calling Enum.GetHashCode, since this method requires a cost.</Description>
     <Owner>munyabe</Owner>
     <Email></Email>
     <Url>https://github.com/munyabe/Munyabe.FxCop.Rules</Url>
