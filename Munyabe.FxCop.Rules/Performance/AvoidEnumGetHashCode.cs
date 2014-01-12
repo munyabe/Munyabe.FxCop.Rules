@@ -46,7 +46,7 @@ namespace Munyabe.FxCop.Performance
         {
             if (IsEnumGetHashCodeCall(call))
             {
-                Problems.Add(new Problem(GetResolution()));
+                Problems.Add(CreateProblem(call));
             }
         }
 

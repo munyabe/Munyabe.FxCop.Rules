@@ -49,7 +49,7 @@ namespace Munyabe.FxCop.Performance
             string resolutionName;
             if (IsCountCall(call) && IsWrongCall(call, out resolutionName))
             {
-                Problems.Add(new Problem(GetNamedResolution(resolutionName)));
+                Problems.Add(CreateProblem(resolutionName, call));
             }
         }
 

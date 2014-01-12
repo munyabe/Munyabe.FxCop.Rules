@@ -11,9 +11,37 @@ namespace Munyabe.FxCop
         /// インスタンスを初期化します。
         /// </summary>
         /// <param name="name">ルール名</param>
-        public BaseRule(string name)
+        protected BaseRule(string name)
             : base(name, "Munyabe.FxCop.Rules", typeof(BaseRule).Assembly)
         {
+        }
+
+        /// <summary>
+        /// 指定のソースコードの情報を設定した<see cref="Problem"/>を作成します。
+        /// </summary>
+        protected Problem CreateProblem(Node node)
+        {
+            return CreateProblem(GetResolution(), node);
+        }
+
+        /// <summary>
+        /// 指定のソースコードの情報を設定した<see cref="Problem"/>を作成します。
+        /// </summary>
+        protected Problem CreateProblem(string resolutionName, Node node)
+        {
+            return CreateProblem(GetNamedResolution(resolutionName), node);
+        }
+
+        /// <summary>
+        /// 指定のソースコードの情報を設定した<see cref="Problem"/>を作成します。
+        /// </summary>
+        protected Problem CreateProblem(Resolution resolution, Node node)
+        {
+            return new Problem(resolution)
+            {
+                SourceFile = node.SourceContext.FileName,
+                SourceLine = node.SourceContext.StartLine
+            };
         }
     }
 }
