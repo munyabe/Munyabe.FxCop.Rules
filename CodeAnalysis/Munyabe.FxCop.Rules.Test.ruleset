@@ -7,5 +7,6 @@
     <Rule Id="MU1000" Action="Warning" />
     <Rule Id="MU1100" Action="Warning" />
     <Rule Id="MU1101" Action="Warning" />
+    <Rule Id="MU1200" Action="Warning" />
   </Rules>
 </RuleSet>

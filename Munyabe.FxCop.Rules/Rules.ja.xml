@@ -31,4 +31,14 @@
     <MessageLevel Certainty="95">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>
   </Rule>
+  <Rule Category="Munyabe.Maintainability" CheckId="MU1200" TypeName="MarkPrivateFieldsAsReadOnly">
+    <Name>private フィールドを readonly にします</Name>
+    <Description>初期化後に値を設定しない private フィールドは readonly にしてください。</Description>
+    <Owner>munyabe</Owner>
+    <Email></Email>
+    <Url>https://github.com/munyabe/Munyabe.FxCop.Rules</Url>
+    <Resolution>[{0}] を readonly にしてください。</Resolution>
+    <MessageLevel Certainty="75">Warning</MessageLevel>
+    <FixCategories>NonBreaking</FixCategories>
+  </Rule>
 </Rules>

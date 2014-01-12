@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseRule.cs" />
+    <Compile Include="Maintainability\MarkPrivateFieldsAsReadOnly.cs" />
     <Compile Include="Performance\AvoidEnumGetHashCode.cs" />
     <Compile Include="Performance\AvoidUnnecessaryEnumerableCount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -57,7 +58,8 @@
     </Compile>
     <Compile Include="Design\DoMakeExceptionsSerializable.cs" />
     <Compile Include="Util\Guard.cs" />
-    <Compile Include="Util\TypeNodeExtensions.cs" />
+    <Compile Include="Util\IEnumerableExtensions.cs" />
+    <Compile Include="Util\MethodExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
