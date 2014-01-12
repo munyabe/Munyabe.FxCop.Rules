@@ -11,6 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReferenceAssemblies", "Refe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeAnalysisTestTarget", "CodeAnalysisTestTarget\CodeAnalysisTestTarget.csproj", "{646136DE-9C1F-46D0-AB32-0BF1214BE512}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeAnalysis", "CodeAnalysis", "{430BCC40-A294-4C76-8D11-8F24C2119E3E}"
+	ProjectSection(SolutionItems) = preProject
+		CodeAnalysis\CodeAnalysisConfiguration.xml = CodeAnalysis\CodeAnalysisConfiguration.xml
+		CodeAnalysis\Munyabe.FxCop.Rules.Test.FxCop = CodeAnalysis\Munyabe.FxCop.Rules.Test.FxCop
+		CodeAnalysis\Munyabe.FxCop.Rules.Test.ruleset = CodeAnalysis\Munyabe.FxCop.Rules.Test.ruleset
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

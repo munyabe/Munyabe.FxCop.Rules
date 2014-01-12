@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="Munyabe.FxCop.Rules rule set" Description="This rule set contains all Munyabe.FxCop.Rules rules for test." ToolsVersion="10.0">
+  <RuleHintPaths>
+    <Path>..\Munyabe.FxCop.Rules\bin\Debug\Munyabe.FxCop.Rules.dll</Path>
+  </RuleHintPaths>
+  <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
+    <Rule Id="MU1000" Action="Warning" />
+    <Rule Id="MU1100" Action="Warning" />
+    <Rule Id="MU1101" Action="Warning" />
+  </Rules>
+</RuleSet>

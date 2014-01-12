@@ -21,11 +21,11 @@
   <IgnoreGeneratedCode>False</IgnoreGeneratedCode>
  </ProjectOptions>
  <Targets>
-  <Target Name="$(ProjectDir)/CodeAnalysisTestTarget/bin/Debug/CodeAnalysisTestTarget.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/../CodeAnalysisTestTarget/bin/Debug/CodeAnalysisTestTarget.dll" Analyze="True" AnalyzeAllChildren="True" />
  </Targets>
  <Rules>
   <RuleFiles>
-   <RuleFile Name="$(ProjectDir)/Munyabe.FxCop.Rules/bin/Debug/Munyabe.FxCop.Rules.dll" Enabled="True" AllRulesEnabled="True" AllRulesBreakBuild="True" />
+   <RuleFile Name="$(ProjectDir)/../Munyabe.FxCop.Rules/bin/Debug/Munyabe.FxCop.Rules.dll" Enabled="True" AllRulesEnabled="True" AllRulesBreakBuild="True" />
   </RuleFiles>
   <Groups />
   <Settings />
