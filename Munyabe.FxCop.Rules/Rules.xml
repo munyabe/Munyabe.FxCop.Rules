@@ -1,6 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Rules FriendlyName="Munyabe FxCop Rules">
-  <Rule Category="Munyabe.Performance" CheckId="MU1000" TypeName="AvoidUnnecessaryEnumerableCount">
+  <Rule Category="Munyabe.Design" CheckId="MU1000" TypeName="DoMakeExceptionsSerializable">
+    <Name>Do make exceptions serializable</Name>
+    <Description>Do make exceptions serializable. An exception must be serializable to work correctly across application domain and remoting boundaries.</Description>
+    <Owner>munyabe</Owner>
+    <Email></Email>
+    <Url>http://msdn.microsoft.com/library/ms229064.aspx</Url>
+    <Resolution>Marked a class which inherits the Exception with the Serializable attribute.</Resolution>
+    <MessageLevel Certainty="95">Warning</MessageLevel>
+    <FixCategories>NonBreaking</FixCategories>
+  </Rule>
+  <Rule Category="Munyabe.Maintainability" CheckId="MU1500" TypeName="MarkPrivateFieldsAsReadOnly">
+    <Name>Mark private fields as readonly</Name>
+    <Description>Mark a private field which is not set after initialization as readonly.</Description>
+    <Owner>munyabe</Owner>
+    <Email></Email>
+    <Url>https://github.com/munyabe/Munyabe.FxCop.Rules</Url>
+    <Resolution>Marke the [{0}] as readonly.</Resolution>
+    <MessageLevel Certainty="75">Warning</MessageLevel>
+    <FixCategories>NonBreaking</FixCategories>
+  </Rule>
+  <Rule Category="Munyabe.Performance" CheckId="MU1800" TypeName="AvoidUnnecessaryEnumerableCount">
     <Name>Avoid unnecessary Enumerable.Count</Name>
     <Description>Avoid Enumerable.Count in Array or ICollection`1 instance.</Description>
     <Owner>munyabe</Owner>
@@ -11,7 +31,7 @@
     <MessageLevel Certainty="95">Warning</MessageLevel>
     <FixCategories>Breaking</FixCategories>
   </Rule>
-  <Rule Category="Munyabe.Performance" CheckId="MU1101" TypeName="AvoidEnumGetHashCode">
+  <Rule Category="Munyabe.Performance" CheckId="MU1801" TypeName="AvoidEnumGetHashCode">
     <Name>Avoid calling Enum.GetHashCode</Name>
     <Description>Avoid calling Enum.GetHashCode, since This method requires a cost.</Description>
     <Owner>munyabe</Owner>
@@ -19,26 +39,6 @@
     <Url>https://github.com/munyabe/Munyabe.FxCop.Rules</Url>
     <Resolution>Call GetHashCode after casting to Int32.</Resolution>
     <MessageLevel Certainty="95">Warning</MessageLevel>
-    <FixCategories>NonBreaking</FixCategories>
-  </Rule>
-  <Rule Category="Munyabe.Design" CheckId="MU1100" TypeName="DoMakeExceptionsSerializable">
-    <Name>Do make exceptions serializable</Name>
-    <Description>Do make exceptions serializable. An exception must be serializable to work correctly across application domain and remoting boundaries.</Description>
-    <Owner>munyabe</Owner>
-    <Email></Email>
-    <Url>http://msdn.microsoft.com/library/ms229064.aspx</Url>
-    <Resolution>Marked a class which inherits the Exception with the Serializable attribute.</Resolution>
-    <MessageLevel Certainty="95">Warning</MessageLevel>
-    <FixCategories>NonBreaking</FixCategories>
-  </Rule>
-  <Rule Category="Munyabe.Maintainability" CheckId="MU1200" TypeName="MarkPrivateFieldsAsReadOnly">
-    <Name>Mark private fields as readonly</Name>
-    <Description>Mark a private field which is not set after initialization as readonly.</Description>
-    <Owner>munyabe</Owner>
-    <Email></Email>
-    <Url>https://github.com/munyabe/Munyabe.FxCop.Rules</Url>
-    <Resolution>Marke the [{0}] as readonly.</Resolution>
-    <MessageLevel Certainty="75">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>
   </Rule>
 </Rules>

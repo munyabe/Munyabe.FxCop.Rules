@@ -1,6 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Rules FriendlyName="Munyabe FxCop Rules">
-  <Rule Category="Munyabe.Performance" CheckId="MU1000" TypeName="AvoidUnnecessaryEnumerableCount">
+  <Rule Category="Munyabe.Design" CheckId="MU1000" TypeName="DoMakeExceptionsSerializable">
+    <Name>例外をシリアル化可能にします</Name>
+    <Description>例外をシリアル化可能にします。アプリケーションドメインやリモート処理境界を越えて適切に例外を動作させるには、シリアル化可能にする必要があります。</Description>
+    <Owner>munyabe</Owner>
+    <Email></Email>
+    <Url>http://msdn.microsoft.com/library/ms229064.aspx</Url>
+    <Resolution>Exception を継承するクラスは Serializable 属性を付与してください。</Resolution>
+    <MessageLevel Certainty="95">Warning</MessageLevel>
+    <FixCategories>NonBreaking</FixCategories>
+  </Rule>
+  <Rule Category="Munyabe.Maintainability" CheckId="MU1500" TypeName="MarkPrivateFieldsAsReadOnly">
+    <Name>private フィールドを readonly にします</Name>
+    <Description>初期化後に値を設定しない private フィールドは readonly にしてください。</Description>
+    <Owner>munyabe</Owner>
+    <Email></Email>
+    <Url>https://github.com/munyabe/Munyabe.FxCop.Rules</Url>
+    <Resolution>[{0}] を readonly にしてください。</Resolution>
+    <MessageLevel Certainty="75">Warning</MessageLevel>
+    <FixCategories>NonBreaking</FixCategories>
+  </Rule>
+  <Rule Category="Munyabe.Performance" CheckId="MU1800" TypeName="AvoidUnnecessaryEnumerableCount">
     <Name>不要な Enumerable.Count を呼び出さないでください</Name>
     <Description>配列や ICollection では Enumerable.Count を使用しないでください。</Description>
     <Owner>munyabe</Owner>
@@ -11,7 +31,7 @@
     <MessageLevel Certainty="95">Warning</MessageLevel>
     <FixCategories>Breaking</FixCategories>
   </Rule>
-  <Rule Category="Munyabe.Performance" CheckId="MU1101" TypeName="AvoidEnumGetHashCode">
+  <Rule Category="Munyabe.Performance" CheckId="MU1801" TypeName="AvoidEnumGetHashCode">
     <Name>Enum.GetHashCode を使用しないでください</Name>
     <Description>Enum.GetHashCode はコストが高いため、使用しないでください。</Description>
     <Owner>munyabe</Owner>
@@ -19,26 +39,6 @@
     <Url>https://github.com/munyabe/Munyabe.FxCop.Rules</Url>
     <Resolution>Int32 にキャストしてから GetHashCode を呼び出してください。</Resolution>
     <MessageLevel Certainty="95">Warning</MessageLevel>
-    <FixCategories>NonBreaking</FixCategories>
-  </Rule>
-  <Rule Category="Munyabe.Design" CheckId="MU1100" TypeName="DoMakeExceptionsSerializable">
-    <Name>例外をシリアル化可能にします</Name>
-    <Description>例外をシリアル化可能にします。アプリケーションドメインやリモート処理境界を越えて適切に例外を動作させるには、シリアル化可能にする必要があります。</Description>
-    <Owner>munyabe</Owner>
-    <Email></Email>
-    <Url>http://msdn.microsoft.com/library/ms229064.aspx</Url>
-    <Resolution>Exception を継承するクラスは Serializable 属性を付与してください。</Resolution>
-    <MessageLevel Certainty="95">Warning</MessageLevel>
-    <FixCategories>NonBreaking</FixCategories>
-  </Rule>
-  <Rule Category="Munyabe.Maintainability" CheckId="MU1200" TypeName="MarkPrivateFieldsAsReadOnly">
-    <Name>private フィールドを readonly にします</Name>
-    <Description>初期化後に値を設定しない private フィールドは readonly にしてください。</Description>
-    <Owner>munyabe</Owner>
-    <Email></Email>
-    <Url>https://github.com/munyabe/Munyabe.FxCop.Rules</Url>
-    <Resolution>[{0}] を readonly にしてください。</Resolution>
-    <MessageLevel Certainty="75">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>
   </Rule>
 </Rules>
