@@ -27,20 +27,5 @@ namespace Munyabe.FxCop.Util
                 action(each);
             }
         }
-
-        /// <summary>
-        /// <see cref="IEnumerable{T}"/>から<see cref="HashSet{T}"/>を作成します。
-        /// </summary>
-        /// <typeparam name="T">各要素の型</typeparam>
-        /// <param name="source">処理を適用する値のシーケンス</param>
-        /// <returns>作成した<see cref="HashSet{T}"/></returns>
-        /// <exception cref="ArgumentNullException"><paramref name="source"/>が<see langword="null"/>です。</exception>
-        [DebuggerStepThrough]
-        public static HashSet<T> ToHashSet<T>(this IEnumerable<T> source)
-        {
-            Guard.ArgumentNotNull(source, "source");
-
-            return new HashSet<T>(source);
-        }
     }
 }

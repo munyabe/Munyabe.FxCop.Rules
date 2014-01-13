@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Microsoft.FxCop.Sdk;
 
-namespace Munyabe.FxCop.Performance
+namespace Munyabe.FxCop.Util
 {
     /// <summary>
     /// <see cref="Enumerable"/>を解析するクラスです。
