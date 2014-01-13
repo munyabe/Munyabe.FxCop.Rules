@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
+﻿using System.Collections.Generic;
 
 namespace CodeAnalysisTestTarget.Maintainability
 {
+    /// <summary>
+    /// <c>MarkPrivateFieldsAsReadOnly</c>の解析ルールを確認するためのクラスです。
+    /// </summary>
     public class MarkPrivateFieldsAsReadOnlyTarget
     {
         public class OK_ReadonlyField

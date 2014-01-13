@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CodeAnalysisTestTarget.Performance
+﻿namespace CodeAnalysisTestTarget.Performance
 {
-    public static class AvoidEnumGetHashCodeTarget
+    /// <summary>
+    /// <c>AvoidEnumGetHashCode</c>の解析ルールを確認するためのクラスです。
+    /// </summary>
+    public class AvoidEnumGetHashCodeTarget
     {
-        public static void OK()
+        public void OK()
         {
             var code = ((int)Hoge.A).GetHashCode();
         }
 
-        public static void NG()
+        public void NG()
         {
             var code = Hoge.A.GetHashCode();
         }

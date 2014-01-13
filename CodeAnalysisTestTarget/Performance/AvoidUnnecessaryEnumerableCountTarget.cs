@@ -3,21 +3,24 @@ using System.Linq;
 
 namespace CodeAnalysisTestTarget.Performance
 {
-    public static class AvoidUnnecessaryEnumerableCountTarget
+    /// <summary>
+    /// <c>AvoidUnnecessaryEnumerableCount</c>の解析ルールを確認するためのクラスです。
+    /// </summary>
+    public class AvoidUnnecessaryEnumerableCountTarget
     {
-        public static void OK()
+        public void OK()
         {
             var enumerable = Enumerable.Range(0, 3);
             enumerable.Count();
         }
 
-        public static void NG_ICollection()
+        public void NG_ICollection()
         {
             var list = new List<int> { 1, 2, 3 };
             list.Count();
         }
 
-        public static void NG_Array()
+        public void NG_Array()
         {
             var array = new int[] { 1, 2, 3 };
             array.Count();

@@ -2,7 +2,10 @@
 
 namespace CodeAnalysisTestTarget.Design
 {
-    public static class DoMakeExceptionsSerializableTarget
+    /// <summary>
+    /// <c>DoMakeExceptionsSerializable</c>の解析ルールを確認するためのクラスです。
+    /// </summary>
+    public class DoMakeExceptionsSerializableTarget
     {
         [Serializable]
         public class OKException : Exception
