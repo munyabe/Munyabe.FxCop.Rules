@@ -20,6 +20,16 @@
     <MessageLevel Certainty="75">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>
   </Rule>
+  <Rule Category="Munyabe.Maintainability" CheckId="MU1501" TypeName="DoNotInitializeFieldsToDefaultValue">
+    <Name>フィールドをデフォルト値で初期化しないでください</Name>
+    <Description>フィールドをデフォルト値で初期化する必要はありません。</Description>
+    <Owner>munyabe</Owner>
+    <Email></Email>
+    <Url>https://github.com/munyabe/Munyabe.FxCop.Rules</Url>
+    <Resolution>初期化するコードを削除するか、デフォルト値以外で初期化してください。</Resolution>
+    <MessageLevel Certainty="75">Warning</MessageLevel>
+    <FixCategories>NonBreaking</FixCategories>
+  </Rule>
   <Rule Category="Munyabe.Performance" CheckId="MU1800" TypeName="AvoidUnnecessaryEnumerableCount">
     <Name>不要な Enumerable.Count を呼び出さないでください</Name>
     <Description>配列や ICollection では Enumerable.Count を使用しないでください。</Description>

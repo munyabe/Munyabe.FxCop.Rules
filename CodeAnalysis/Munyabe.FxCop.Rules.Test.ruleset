@@ -6,6 +6,7 @@
   <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
     <Rule Id="MU1000" Action="Warning" />
     <Rule Id="MU1500" Action="Warning" />
+    <Rule Id="MU1501" Action="Warning" />
     <Rule Id="MU1800" Action="Warning" />
     <Rule Id="MU1801" Action="Warning" />
     <Rule Id="MU1802" Action="Warning" />

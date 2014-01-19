@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -47,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseRule.cs" />
+    <Compile Include="Maintainability\DoNotInitializeFieldsToDefaultValue.cs" />
     <Compile Include="Maintainability\MarkPrivateFieldsAsReadOnly.cs" />
     <Compile Include="Performance\AvoidEnumGetHashCode.cs" />
     <Compile Include="Performance\AvoidUnnecessaryEnumerableCount.cs" />
@@ -59,6 +61,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Design\DoMakeExceptionsSerializable.cs" />
+    <Compile Include="Util\ExpressionExtentions.cs" />
     <Compile Include="Util\Guard.cs" />
     <Compile Include="Util\IEnumerableExtensions.cs" />
     <Compile Include="Util\MethodCallExtensions.cs" />

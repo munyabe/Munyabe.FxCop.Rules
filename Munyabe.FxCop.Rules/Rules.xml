@@ -20,6 +20,16 @@
     <MessageLevel Certainty="75">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>
   </Rule>
+  <Rule Category="Munyabe.Maintainability" CheckId="MU1501" TypeName="DoNotInitializeFieldsToDefaultValue">
+    <Name>Do not initialize fields to default value</Name>
+    <Description>It is not necessary to initialize fields to default value.</Description>
+    <Owner>munyabe</Owner>
+    <Email></Email>
+    <Url>https://github.com/munyabe/Munyabe.FxCop.Rules</Url>
+    <Resolution>Remove the initializing code, or initialize except default value.</Resolution>
+    <MessageLevel Certainty="75">Warning</MessageLevel>
+    <FixCategories>NonBreaking</FixCategories>
+  </Rule>
   <Rule Category="Munyabe.Performance" CheckId="MU1800" TypeName="AvoidUnnecessaryEnumerableCount">
     <Name>Avoid unnecessary Enumerable.Count</Name>
     <Description>Avoid Enumerable.Count in Array or ICollection`1 instance.</Description>

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.FxCop.Sdk;
 using Munyabe.FxCop.Util;
 
@@ -82,45 +81,17 @@ namespace Munyabe.FxCop.Performance
         /// </summary>
         private bool IsCountAndZeroOperation(BinaryExpression expression)
         {
-            if (IsInt32Literal(expression.Operand1, 0))
+            if (expression.Operand1.IsInt32Literal(0))
             {
-                return IsMethodCall(expression.Operand2, _countMethod);
+                return expression.Operand2.IsMethodCall(_countMethod);
             }
 
-            if (IsInt32Literal(expression.Operand2, 0))
+            if (expression.Operand2.IsInt32Literal(0))
             {
-                return IsMethodCall(expression.Operand1, _countMethod);
+                return expression.Operand1.IsMethodCall(_countMethod);
             }
 
             return false;
-        }
-
-        /// <summary>
-        /// 式が<see cref="Int32"/>のリテラルかどうかを判定します。
-        /// </summary>
-        private static bool IsInt32Literal(Expression expression, int value)
-        {
-            var literal = expression as Literal;
-            if (literal == null)
-            {
-                return false;
-            }
-
-            if (literal.Type != FrameworkTypes.Int32)
-            {
-                return false;
-            }
-
-            return Reference.Equals(literal.Value, value);
-        }
-
-        /// <summary>
-        /// 式が指定の値のメソッドの呼び出しかどうかを判定します。
-        /// </summary>
-        private static bool IsMethodCall(Expression expression, Method method)
-        {
-            var call = expression as MethodCall;
-            return call != null && call.IsCall(method);
         }
     }
 }
