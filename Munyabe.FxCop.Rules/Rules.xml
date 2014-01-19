@@ -5,7 +5,7 @@
     <Description>Do make exceptions serializable. An exception must be serializable to work correctly across application domain and remoting boundaries.</Description>
     <Owner>munyabe</Owner>
     <Email></Email>
-    <Url>http://msdn.microsoft.com/library/ms229064.aspx</Url>
+    <Url>http://msdn.microsoft.com/en-us/library/ms229064(v=vs.100).aspx</Url>
     <Resolution>Marked a class which inherits the Exception with the Serializable attribute.</Resolution>
     <MessageLevel Certainty="95">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>

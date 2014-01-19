@@ -5,7 +5,7 @@
     <Description>例外をシリアル化可能にします。アプリケーションドメインやリモート処理境界を越えて適切に例外を動作させるには、シリアル化可能にする必要があります。</Description>
     <Owner>munyabe</Owner>
     <Email></Email>
-    <Url>http://msdn.microsoft.com/library/ms229064.aspx</Url>
+    <Url>http://msdn.microsoft.com/ja-jp/library/ms229064.aspx</Url>
     <Resolution>Exception を継承するクラスは Serializable 属性を付与してください。</Resolution>
     <MessageLevel Certainty="95">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>
