@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using Microsoft.FxCop.Sdk;
 using Munyabe.FxCop.Util;
 
@@ -11,7 +10,6 @@ namespace Munyabe.FxCop.Maintainability
     /// </summary>
     public class MarkPrivateFieldsAsReadOnly : BaseRule
     {
-        private readonly FieldInfo _offsetField = typeof(Expression).GetField("ILOffset", BindingFlags.NonPublic | BindingFlags.Instance);
         private readonly HashSet<Field> _setFields = new HashSet<Field>();
 
         /// <summary>
@@ -39,16 +37,24 @@ namespace Munyabe.FxCop.Maintainability
         }
 
         /// <inheritdoc />
-        public override void VisitMemberBinding(MemberBinding memberBinding)
+        public override void VisitAssignmentStatement(AssignmentStatement assignment)
         {
-            var boundField = memberBinding.BoundMember as Field;
-            if (boundField != null)
+            var memberBinding = assignment.Target as MemberBinding;
+            if (memberBinding == null)
             {
-                var targetObject = memberBinding.TargetObject as This;
-                if (targetObject != null && targetObject.DeclaringMethod.IsInitializer() == false && IsSetBinding(memberBinding))
-                {
-                    _setFields.Add(boundField);
-                }
+                return;
+            }
+
+            var field = memberBinding.BoundMember as Field;
+            if (field == null)
+            {
+                return;
+            }
+
+            var thisObject = memberBinding.TargetObject as This;
+            if (thisObject != null && thisObject.DeclaringMethod.IsInitializer() == false)
+            {
+                _setFields.Add(field);
             }
         }
 
@@ -58,15 +64,6 @@ namespace Munyabe.FxCop.Maintainability
         private bool IsPossibleDefinition(Field field)
         {
             return field.IsLiteral == false && field.IsPrivate && field.IsInitOnly == false;
-        }
-
-        /// <summary>
-        /// 値の設定どうかを判定します。
-        /// </summary>
-        private bool IsSetBinding(MemberBinding memberBinding)
-        {
-            var offset = _offsetField.GetValue(memberBinding);
-            return (int)offset == 0;
         }
     }
 }
