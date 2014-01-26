@@ -53,6 +53,30 @@ namespace Munyabe.FxCop.Maintainability
         }
 
         /// <summary>
+        /// 指定の型のデフォルト値を取得します。
+        /// </summary>
+        private static object GetDefaultValue(TypeNode type)
+        {
+            if (type.IsValueType)
+            {
+                if (type == FrameworkTypes.Double)
+                {
+                    return 0d;
+                }
+                else if (type == FrameworkTypes.Single)
+                {
+                    return 0f;
+                }
+
+                return 0;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// 指定の型のデフォルト値かどうかを判定します。
         /// </summary>
         private static bool IsDefaultValue(TypeNode type, Expression expression)
@@ -60,7 +84,7 @@ namespace Munyabe.FxCop.Maintainability
             var literal = expression as Literal;
             if (literal != null)
             {
-                return IsDefaultValue(type, literal);
+                return Equals(literal.Value, GetDefaultValue(type));
             }
 
             // MEMO : long
@@ -68,7 +92,7 @@ namespace Munyabe.FxCop.Maintainability
             if (unary != null)
             {
                 var operand = unary.Operand as Literal;
-                return operand != null && IsDefaultValue(type, operand);
+                return operand != null && Equals(operand.Value, GetDefaultValue(type));
             }
 
             // MEMO : decimal
@@ -79,30 +103,6 @@ namespace Munyabe.FxCop.Maintainability
             }
 
             return false;
-        }
-
-        /// <summary>
-        /// 指定の型のデフォルト値かどうかを判定します。
-        /// </summary>
-        private static bool IsDefaultValue(TypeNode type, Literal literal)
-        {
-            if (type.IsValueType)
-            {
-                if (literal.Type == FrameworkTypes.Double)
-                {
-                    return Equals(literal.Value, 0d);
-                }
-                else if (literal.Type == FrameworkTypes.Single)
-                {
-                    return Equals(literal.Value, 0f);
-                }
-
-                return Equals(literal.Value, 0);
-            }
-            else
-            {
-                return literal.Value == null;
-            }
         }
 
         /// <summary>
