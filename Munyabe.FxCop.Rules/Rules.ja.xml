@@ -6,7 +6,7 @@
     <Owner>munyabe</Owner>
     <Email></Email>
     <Url>http://msdn.microsoft.com/ja-jp/library/ms229064.aspx</Url>
-    <Resolution>Exception を継承するクラスは Serializable 属性を付与してください。</Resolution>
+    <Resolution>Exception を継承する [{0}] に Serializable 属性を付与してください。</Resolution>
     <MessageLevel Certainty="95">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>
   </Rule>
@@ -15,8 +15,8 @@
     <Description>初期化後に値を設定しない private フィールドは readonly にしてください。</Description>
     <Owner>munyabe</Owner>
     <Email></Email>
-    <Url>https://github.com/munyabe/Munyabe.FxCop.Rules</Url>
-    <Resolution>[{0}] を readonly にしてください。</Resolution>
+    <Url></Url>
+    <Resolution>[{0}#{1}] を readonly にしてください。</Resolution>
     <MessageLevel Certainty="75">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>
   </Rule>
@@ -25,7 +25,7 @@
     <Description>フィールドをデフォルト値で初期化する必要はありません。</Description>
     <Owner>munyabe</Owner>
     <Email></Email>
-    <Url>https://github.com/munyabe/Munyabe.FxCop.Rules</Url>
+    <Url></Url>
     <Resolution>初期化するコードを削除するか、デフォルト値以外で初期化してください。</Resolution>
     <MessageLevel Certainty="75">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>
@@ -35,7 +35,7 @@
     <Description>配列や ICollection では Enumerable.Count を使用しないでください。</Description>
     <Owner>munyabe</Owner>
     <Email></Email>
-    <Url>https://github.com/munyabe/Munyabe.FxCop.Rules</Url>
+    <Url></Url>
     <Resolution Name="Array">Length プロパティを使用してください。</Resolution>
     <Resolution Name="ICollection">Count プロパティを使用してください。</Resolution>
     <MessageLevel Certainty="95">Warning</MessageLevel>
@@ -46,7 +46,7 @@
     <Description>Enumerable.Count の結果を0と比較すると、不要な列挙が実行される可能性があります。</Description>
     <Owner>munyabe</Owner>
     <Email></Email>
-    <Url>https://github.com/munyabe/Munyabe.FxCop.Rules</Url>
+    <Url></Url>
     <Resolution>Enumerable.Any を使用してください。</Resolution>
     <MessageLevel Certainty="95">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>
@@ -56,7 +56,7 @@
     <Description>Enum.GetHashCode はコストが高いため、使用しないでください。</Description>
     <Owner>munyabe</Owner>
     <Email></Email>
-    <Url>https://github.com/munyabe/Munyabe.FxCop.Rules</Url>
+    <Url></Url>
     <Resolution>Int32 にキャストしてから GetHashCode を呼び出してください。</Resolution>
     <MessageLevel Certainty="95">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>

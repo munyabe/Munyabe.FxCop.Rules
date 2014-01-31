@@ -30,7 +30,7 @@ namespace Munyabe.FxCop.Maintainability
 
                 fields
                     .Where(field => _setFields.Contains(field) == false)
-                    .ForEach(field => Problems.Add(new Problem(GetResolution(field.Name.Name))));
+                    .ForEach(field => Problems.Add(new Problem(GetResolution(field.DeclaringType.Name.Name, field.Name.Name))));
             }
 
             return Problems;

@@ -21,7 +21,7 @@ namespace Munyabe.FxCop.Design
         {
             if (type.IsAssignableTo(FrameworkTypes.Exception) && type.IsAbstract == false && RuleUtilities.IsSerializable(type) == false)
             {
-                Problems.Add(new Problem(GetResolution()));
+                Problems.Add(new Problem(GetResolution(type.Name.Name)));
             }
 
             return Problems;
