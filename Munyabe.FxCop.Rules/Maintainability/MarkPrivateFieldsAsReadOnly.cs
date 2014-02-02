@@ -104,8 +104,14 @@ namespace Munyabe.FxCop.Maintainability
         /// </summary>
         private static bool IsEvent(Field field)
         {
-            var type = field.Type;
-            return type.IsGeneric ? type.Template == SystemTypes.GenericEventHandler : type == SystemTypes.EventHandler;
+            var members = field.Type.Members;
+
+            return field.Type is DelegateNode &&
+                members.Count == 4 &&
+                IsMethod(members[0] as InstanceInitializer, ".ctor", FrameworkTypes.Void, FrameworkTypes.Object, FrameworkTypes.IntPtr) &&
+                IsMethod(members[1] as Method, "Invoke", FrameworkTypes.Void) &&
+                IsMethod(members[2] as Method, "BeginInvoke", SystemTypes.IAsyncResult) &&
+                IsMethod(members[3] as Method, "EndInvoke", FrameworkTypes.Void, SystemTypes.IAsyncResult);
         }
 
         /// <summary>
@@ -114,6 +120,24 @@ namespace Munyabe.FxCop.Maintainability
         private static bool IsLambdaCache(Field field)
         {
             return field.Name.Name.StartsWith("CS$<>9__") && field.Type.IsAssignableTo(FrameworkTypes.Delegate);
+        }
+
+        /// <summary>
+        /// 指定のメソッドかどうかを判定します。
+        /// </summary>
+        private static bool IsMethod(Method method, string name, TypeNode returnType)
+        {
+            return method.Name.Name == name && method.ReturnType == returnType;
+        }
+
+        /// <summary>
+        /// 指定のメソッドかどうかを判定します。
+        /// </summary>
+        private static bool IsMethod(Method method, string name, TypeNode returnType, params TypeNode[] parameters)
+        {
+            return IsMethod(method, name, returnType) &&
+                method.Parameters.Count == parameters.Length &&
+                method.Parameters.Select(param => param.Type).SequenceEqual(parameters);
         }
 
         /// <summary>

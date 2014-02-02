@@ -142,8 +142,11 @@ namespace CodeAnalysisTestTarget.Maintainability
 
         public class OK_Event
         {
+            public delegate void CustomEventHandler();
+
             public event EventHandler Testing;
             public event EventHandler<EventArgs> GenericTesting;
+            public event CustomEventHandler CustomEvent;
         }
 
         public class OK_LambdaCache
