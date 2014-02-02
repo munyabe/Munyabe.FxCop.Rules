@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.FxCop.Sdk;
+using Munyabe.FxCop.Util;
 
 namespace Munyabe.FxCop.Performance
 {
@@ -8,26 +9,12 @@ namespace Munyabe.FxCop.Performance
     /// </summary>
     public class AvoidEnumGetHashCode : BaseRule
     {
-        private static Method _getHashCodeMethod;
-
         /// <summary>
         /// インスタンスを初期化します。
         /// </summary>
         public AvoidEnumGetHashCode()
             : base("AvoidEnumGetHashCode")
         {
-        }
-
-        /// <inheritdoc />
-        public override void BeforeAnalysis()
-        {
-            _getHashCodeMethod = FrameworkTypes.Object.GetMethod(Identifier.For("GetHashCode"));
-        }
-
-        /// <inheritdoc />
-        public override void AfterAnalysis()
-        {
-            _getHashCodeMethod = null;
         }
 
         /// <inheritdoc />
@@ -72,7 +59,7 @@ namespace Munyabe.FxCop.Performance
                 return false;
             }
 
-            return method == _getHashCodeMethod;
+            return method == SystemMembers.Object_GetHashCode;
         }
     }
 }

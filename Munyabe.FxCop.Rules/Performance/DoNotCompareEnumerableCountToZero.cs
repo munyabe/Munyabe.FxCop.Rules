@@ -9,26 +9,12 @@ namespace Munyabe.FxCop.Performance
     /// </summary>
     public class DoNotCompareEnumerableCountToZero : BaseRule
     {
-        private static Method _countMethod;
-
         /// <summary>
         /// インスタンスを初期化します。
         /// </summary>
         public DoNotCompareEnumerableCountToZero()
             : base("DoNotCompareEnumerableCountToZero")
         {
-        }
-
-        /// <inheritdoc />
-        public override void BeforeAnalysis()
-        {
-            _countMethod = EnumerableAnalyst.GetCountMethod();
-        }
-
-        /// <inheritdoc />
-        public override void AfterAnalysis()
-        {
-            _countMethod = null;
         }
 
         /// <inheritdoc />
@@ -83,12 +69,12 @@ namespace Munyabe.FxCop.Performance
         {
             if (expression.Operand1.IsInt32Literal(0))
             {
-                return expression.Operand2.IsMethodCall(_countMethod);
+                return expression.Operand2.IsMethodCall(SystemMembers.Enumerable_Count);
             }
 
             if (expression.Operand2.IsInt32Literal(0))
             {
-                return expression.Operand1.IsMethodCall(_countMethod);
+                return expression.Operand1.IsMethodCall(SystemMembers.Enumerable_Count);
             }
 
             return false;

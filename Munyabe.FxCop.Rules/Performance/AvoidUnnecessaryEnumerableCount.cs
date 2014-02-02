@@ -11,7 +11,6 @@ namespace Munyabe.FxCop.Performance
     {
         private const string RESOLUTION_NAME_ARRAY = "Array";
         private const string RESOLUTION_NAME_ICOLLECTION = "ICollection";
-        private static Method _countMethod;
 
         /// <summary>
         /// インスタンスを初期化します。
@@ -19,18 +18,6 @@ namespace Munyabe.FxCop.Performance
         public AvoidUnnecessaryEnumerableCount()
             : base("AvoidUnnecessaryEnumerableCount")
         {
-        }
-
-        /// <inheritdoc />
-        public override void BeforeAnalysis()
-        {
-            _countMethod = EnumerableAnalyst.GetCountMethod();
-        }
-
-        /// <inheritdoc />
-        public override void AfterAnalysis()
-        {
-            _countMethod = null;
         }
 
         /// <inheritdoc />
@@ -48,7 +35,7 @@ namespace Munyabe.FxCop.Performance
         public override void VisitMethodCall(MethodCall call)
         {
             string resolutionName;
-            if (call.IsCall(_countMethod) && IsWrongCall(call, out resolutionName))
+            if (call.IsCall(SystemMembers.Enumerable_Count) && IsWrongCall(call, out resolutionName))
             {
                 Problems.Add(CreateProblem(resolutionName, call));
             }
