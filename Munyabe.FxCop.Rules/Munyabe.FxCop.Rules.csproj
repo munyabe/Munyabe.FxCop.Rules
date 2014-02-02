@@ -68,6 +68,7 @@
     <Compile Include="Util\MethodCallExtensions.cs" />
     <Compile Include="Util\MethodExtensions.cs" />
     <Compile Include="Util\SystemMembers.cs" />
+    <Compile Include="Util\SystemTypes.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
