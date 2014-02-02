@@ -49,7 +49,7 @@ namespace Munyabe.FxCop.Util
         /// 式が指定のメソッドの呼び出しかどうかを判定します。
         /// </summary>
         /// <param name="expression">判定する式</param>
-        /// <param name="method">期待するメソッド</param>
+        /// <param name="expectedMethod">期待するメソッド</param>
         /// <returns>式が指定のメソッドの呼び出しの場合は<see langword="true"/></returns>
         public static bool IsMethodCall(this Expression expression, Method expectedMethod)
         {

@@ -21,11 +21,5 @@ namespace Munyabe.FxCop.Util
             .GetMembersNamed(Identifier.For("Count"))
             .OfType<Method>()
             .FirstOrDefault(method => method.Parameters.Count == 1 && method.Parameters[0].Type.IsAssignableToInstanceOf(FrameworkTypes.GenericIEnumerable));
-
-        public static void Clear()
-        {
-            Object_GetHashCode = null;
-            Enumerable_Count = null;
-        }
     }
 }

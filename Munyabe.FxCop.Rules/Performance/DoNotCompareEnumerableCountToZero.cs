@@ -1,11 +1,12 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.FxCop.Sdk;
 using Munyabe.FxCop.Util;
 
 namespace Munyabe.FxCop.Performance
 {
     /// <summary>
-    /// <see cref="Enumerable.Count"/>の結果を0と比較するコードを検出する解析ルールです。
+    /// <see cref="Enumerable.Count{T}(IEnumerable{T})"/>の結果を0と比較するコードを検出する解析ルールです。
     /// </summary>
     public class DoNotCompareEnumerableCountToZero : BaseRule
     {
@@ -63,7 +64,7 @@ namespace Munyabe.FxCop.Performance
         }
 
         /// <summary>
-        /// 演算子の両辺が<see cref="Enumerable.Count"/>の呼び出しと0であるかどうかを判定します。
+        /// 演算子の両辺が<see cref="Enumerable.Count{T}(IEnumerable{T})"/>の呼び出しと0であるかどうかを判定します。
         /// </summary>
         private bool IsCountAndZeroOperation(BinaryExpression expression)
         {

@@ -1,11 +1,12 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.FxCop.Sdk;
 using Munyabe.FxCop.Util;
 
 namespace Munyabe.FxCop.Performance
 {
     /// <summary>
-    /// 不要な<see cref="Enumerable.Count"/>の呼び出しを検出する解析ルールです。
+    /// 不要な<see cref="Enumerable.Count{T}(IEnumerable{T})"/>の呼び出しを検出する解析ルールです。
     /// </summary>
     public class AvoidUnnecessaryEnumerableCount : BaseRule
     {
@@ -42,7 +43,7 @@ namespace Munyabe.FxCop.Performance
         }
 
         /// <summary>
-        /// 誤った<see cref="Enumerable.Count"/>の呼び出しかどうかを判定します。
+        /// 誤った<see cref="Enumerable.Count{T}(IEnumerable{T})"/>の呼び出しかどうかを判定します。
         /// </summary>
         private static bool IsWrongCall(MethodCall call, out string resolutionName)
         {
