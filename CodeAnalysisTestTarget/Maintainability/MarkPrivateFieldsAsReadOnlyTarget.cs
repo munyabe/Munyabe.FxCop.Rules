@@ -49,7 +49,7 @@ namespace CodeAnalysisTestTarget.Maintainability
             }
         }
 
-        public abstract class OK_AbstractClass<T>
+        public abstract class OK_AbstractClass
         {
             private string _field;
 
@@ -117,6 +117,50 @@ namespace CodeAnalysisTestTarget.Maintainability
             }
         }
 
+        public class OK_ObjectInitializer
+        {
+            private string _field;
+
+            public OK_ObjectInitializer CreateInstance()
+            {
+                return new OK_ObjectInitializer
+                {
+                    _field = "OK",
+                };
+            }
+        }
+
+        public class OK_RefParamMethod
+        {
+            private string _field;
+
+            public void Initialize()
+            {
+                SetField(ref _field, "OK");
+            }
+
+            private static void SetField(ref string field, string value)
+            {
+                field = value;
+            }
+        }
+
+        public class OK_RefParamNotVoidMethod
+        {
+            private string _field;
+
+            public string Initialize()
+            {
+                return SetField(ref _field, "OK");
+            }
+
+            private static string SetField(ref string field, string value)
+            {
+                field = value;
+                return value;
+            }
+        }
+
         public class OK_ConstMember
         {
             private const string CONST = "OK";
@@ -157,7 +201,35 @@ namespace CodeAnalysisTestTarget.Maintainability
             }
         }
 
-        public class OK_Closure
+        public class OK_SetLambda
+        {
+            private string _field;
+
+            public void SetValue(string value)
+            {
+                new List<string> { value }.ForEach(each => _field = each);
+            }
+        }
+
+        public class OK_DelegateClosure
+        {
+            private string _field;
+
+            public event EventHandler Testing;
+
+            public OK_DelegateClosure()
+            {
+                EventHandler handler = null;
+                handler = (sender, e) =>
+                {
+                    Testing -= handler;
+                    _field = "OK";
+                };
+                Testing += handler;
+            }
+        }
+
+        public class OK_LambdaClosure
         {
             private string _field;
 
@@ -237,7 +309,7 @@ namespace CodeAnalysisTestTarget.Maintainability
             private Delegate _delegate;
         }
 
-        public class NG_SetLambda
+        public class NG_GetLambda
         {
             private string _field;
 

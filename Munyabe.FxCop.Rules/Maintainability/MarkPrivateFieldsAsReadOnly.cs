@@ -11,6 +11,7 @@ namespace Munyabe.FxCop.Maintainability
     public class MarkPrivateFieldsAsReadOnly : BaseRule
     {
         private readonly HashSet<Expression> _assignmentFields = new HashSet<Expression>();
+        private readonly HashSet<Expression> _refParamFields = new HashSet<Expression>();
 
         /// <summary>
         /// インスタンスを初期化します。
@@ -29,7 +30,8 @@ namespace Munyabe.FxCop.Maintainability
                 Visit(type);
 
                 fields
-                    .Where(field => _assignmentFields.Contains(field.Name) == false)
+                    .Where(field => _assignmentFields.Contains(field.Name) == false &&
+                        _refParamFields.Contains(field.Name) == false)
                     .ForEach(field => Problems.Add(new Problem(GetResolution(field.DeclaringType.Name.Name, field.Name.Name))));
             }
 
@@ -44,6 +46,25 @@ namespace Munyabe.FxCop.Maintainability
             {
                 _assignmentFields.Add(field.Name);
             }
+
+            var call = assignment.Source as MethodCall;
+            if (call != null)
+            {
+                VisitMethodCall(call);
+            }
+        }
+
+        /// <inheritdoc />
+        public override void VisitMethodCall(MethodCall call)
+        {
+            call.Operands
+                .Where(operand => operand.Type is Reference)
+                .OfType<UnaryExpression>()
+                .Select(operand => operand.Operand)
+                .OfType<MemberBinding>()
+                .Select(memberBinding => memberBinding.BoundMember)
+                .OfType<Field>()
+                .ForEach(field => _refParamFields.Add(field.Name));
         }
 
         /// <summary>
@@ -75,15 +96,20 @@ namespace Munyabe.FxCop.Maintainability
                 return field;
             }
 
-            // MEMO : Closure
-            var sourceBinding = assignment.Source as MemberBinding;
-            if (sourceBinding != null && sourceBinding.TargetObject != null && IsClosure(sourceBinding.TargetObject.Type))
+            if (IsClosureBinding(assignment.Source) || IsClosureBinding(memberBinding.TargetObject))
             {
                 return field;
             }
 
             // MEMO : 三項演算子、インクリメント演算子
             if (memberBinding.TargetObject.NodeType == NodeType.Pop)
+            {
+                return field;
+            }
+
+            // MEMO : オブジェクト初期化子
+            var local = memberBinding.TargetObject as Local;
+            if (local != null && local.Name.Name.StartsWith("<>g__initLocal"))
             {
                 return field;
             }
@@ -97,6 +123,15 @@ namespace Munyabe.FxCop.Maintainability
         private static bool IsClosure(TypeNode type)
         {
             return type.Name.Name.StartsWith("<>c__DisplayClass") && type.IsPrivate && type.IsStatic;
+        }
+
+        /// <summary>
+        /// クロージャーの自動生成クラス内で設定する式かどうかを判定します。
+        /// </summary>
+        private static bool IsClosureBinding(Expression expression)
+        {
+            var binding = expression as MemberBinding;
+            return binding != null && binding.TargetObject != null && IsClosure(binding.TargetObject.Type);
         }
 
         /// <summary>
