@@ -106,6 +106,16 @@ namespace CodeAnalysisTestTarget.Maintainability
             }
         }
 
+        public class OK_SetLambda
+        {
+            private string _field;
+
+            public OK_SetLambda()
+            {
+                EventHandler handler = (sender, e) => _field = "OK";
+            }
+        }
+
         public class NG_FieldInitialize
         {
             private readonly byte _byte = 0;

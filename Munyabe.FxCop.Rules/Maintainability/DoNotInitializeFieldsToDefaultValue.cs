@@ -46,9 +46,12 @@ namespace Munyabe.FxCop.Maintainability
         {
             var block = constructor.Body.Statements.OfType<Block>().First();
 
-            // MEMO : フィールド初期化後に Nop が入ることでコンストラクターの処理と区別する
+            // MEMO : フィールド初期化後にコンストラクターを呼び出す ExpressionStatement が入ることを利用して
+            //        コンストラクターと区別する
             block.Statements
                 .TakeWhile(statement => statement.NodeType == NodeType.AssignmentStatement)
+                .OfType<AssignmentStatement>()
+                .Where(statement => IsLocalLambdaAssignment(statement) == false)
                 .ForEach(Visit);
         }
 
@@ -121,6 +124,15 @@ namespace Munyabe.FxCop.Maintainability
             return operands.Count == 5 &&
                 operands.Take(4).All(operand => operand.IsInt32Literal(0)) &&
                 operands[4].IsInt32Literal();
+        }
+
+        /// <summary>
+        /// ローカル変数にキャッシュされたラムダの文かどうかを判定します。
+        /// </summary>
+        private static bool IsLocalLambdaAssignment(AssignmentStatement statement)
+        {
+            var local = statement.Target as Local;
+            return local != null && local.Name.Name.StartsWith("CS$<>9__");
         }
     }
 }
