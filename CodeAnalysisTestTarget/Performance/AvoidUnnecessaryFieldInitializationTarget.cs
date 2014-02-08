@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace CodeAnalysisTestTarget.Maintainability
+namespace CodeAnalysisTestTarget.Performance
 {
     /// <summary>
-    /// <c>DoNotInitializeFieldsToDefaultValue</c>の解析ルールを確認するためのクラスです。
+    /// <c>AvoidUnnecessaryFieldInitialization</c>の解析ルールを確認するためのクラスです。
     /// </summary>
-    public class DoNotInitializeFieldsToDefaultValueTarget
+    public class AvoidUnnecessaryFieldInitializationTarget
     {
         public class OK_FieldInitialize
         {

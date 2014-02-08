@@ -4,9 +4,9 @@ using System.Linq;
 namespace CodeAnalysisTestTarget.Performance
 {
     /// <summary>
-    /// <c>DoNotCompareEnumerableCountToZero</c>の解析ルールを確認するためのクラスです。
+    /// <c>UseEnumerableAny</c>の解析ルールを確認するためのクラスです。
     /// </summary>
-    public class DoNotCompareEnumerableCountToZeroTarget
+    public class UseEnumerableAnyTarget
     {
         private readonly IEnumerable<int> _field = Enumerable.Range(0, 3);
 

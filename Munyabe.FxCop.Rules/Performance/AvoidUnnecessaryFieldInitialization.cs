@@ -3,18 +3,18 @@ using System.Linq;
 using Microsoft.FxCop.Sdk;
 using Munyabe.FxCop.Util;
 
-namespace Munyabe.FxCop.Maintainability
+namespace Munyabe.FxCop.Performance
 {
     /// <summary>
     /// デフォルト値で初期化しているフィールドを検出する解析ルールです。
     /// </summary>
-    public class DoNotInitializeFieldsToDefaultValue : BaseRule
+    public class AvoidUnnecessaryFieldInitialization : BaseRule
     {
         /// <summary>
         /// インスタンスを初期化します。
         /// </summary>
-        public DoNotInitializeFieldsToDefaultValue()
-            : base("DoNotInitializeFieldsToDefaultValue")
+        public AvoidUnnecessaryFieldInitialization()
+            : base("AvoidUnnecessaryFieldInitialization")
         {
         }
 

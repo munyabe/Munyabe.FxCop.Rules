@@ -50,11 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseRule.cs" />
-    <Compile Include="Maintainability\DoNotInitializeFieldsToDefaultValue.cs" />
+    <Compile Include="Performance\AvoidUnnecessaryFieldInitialization.cs" />
     <Compile Include="Maintainability\MarkPrivateFieldsAsReadOnly.cs" />
     <Compile Include="Performance\AvoidEnumGetHashCode.cs" />
     <Compile Include="Performance\AvoidUnnecessaryEnumerableCount.cs" />
-    <Compile Include="Performance\DoNotCompareEnumerableCountToZero.cs" />
+    <Compile Include="Performance\UseEnumerableAny.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

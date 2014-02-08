@@ -20,17 +20,17 @@
     <MessageLevel Certainty="75">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>
   </Rule>
-  <Rule Category="Munyabe.Maintainability" CheckId="MU1501" TypeName="DoNotInitializeFieldsToDefaultValue">
-    <Name>Do not initialize fields to default value</Name>
-    <Description>It is not necessary to initialize fields to default value.</Description>
+  <Rule Category="Munyabe.Performance" CheckId="MU1800" TypeName="AvoidUnnecessaryFieldInitialization">
+    <Name>Avoid unnecessary field initialization</Name>
+    <Description>It is not necessary to initialize fields, because it will be done automatically by the runtime.</Description>
     <Owner>munyabe</Owner>
     <Email></Email>
     <Url></Url>
-    <Resolution>Remove the initializing code, or initialize except default value.</Resolution>
+    <Resolution>Remove this initialization.</Resolution>
     <MessageLevel Certainty="75">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>
   </Rule>
-  <Rule Category="Munyabe.Performance" CheckId="MU1800" TypeName="AvoidUnnecessaryEnumerableCount">
+  <Rule Category="Munyabe.Performance" CheckId="MU1801" TypeName="AvoidUnnecessaryEnumerableCount">
     <Name>Avoid unnecessary Enumerable.Count</Name>
     <Description>Avoid Enumerable.Count in Array or ICollection`1 instance.</Description>
     <Owner>munyabe</Owner>
@@ -41,8 +41,8 @@
     <MessageLevel Certainty="95">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>
   </Rule>
-  <Rule Category="Munyabe.Performance" CheckId="MU1801" TypeName="DoNotCompareEnumerableCountToZero">
-    <Name>Do not compare Enumerable.Count to zero</Name>
+  <Rule Category="Munyabe.Performance" CheckId="MU1802" TypeName="UseEnumerableAny">
+    <Name>Use Enumerable.Any</Name>
     <Description>If you compare Enumerable.Count to zero, an unnecessary enumeration may be executed.</Description>
     <Owner>munyabe</Owner>
     <Email></Email>
@@ -51,7 +51,7 @@
     <MessageLevel Certainty="95">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>
   </Rule>
-  <Rule Category="Munyabe.Performance" CheckId="MU1802" TypeName="AvoidEnumGetHashCode">
+  <Rule Category="Munyabe.Performance" CheckId="MU1803" TypeName="AvoidEnumGetHashCode">
     <Name>Avoid calling Enum.GetHashCode</Name>
     <Description>Avoid calling Enum.GetHashCode, since this method requires a cost.</Description>
     <Owner>munyabe</Owner>

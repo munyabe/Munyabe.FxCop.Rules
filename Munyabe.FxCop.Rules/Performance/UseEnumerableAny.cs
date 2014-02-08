@@ -8,13 +8,13 @@ namespace Munyabe.FxCop.Performance
     /// <summary>
     /// <see cref="Enumerable.Count{T}(IEnumerable{T})"/>の結果を0と比較するコードを検出する解析ルールです。
     /// </summary>
-    public class DoNotCompareEnumerableCountToZero : BaseRule
+    public class UseEnumerableAny : BaseRule
     {
         /// <summary>
         /// インスタンスを初期化します。
         /// </summary>
-        public DoNotCompareEnumerableCountToZero()
-            : base("DoNotCompareEnumerableCountToZero")
+        public UseEnumerableAny()
+            : base("UseEnumerableAny")
         {
         }
 

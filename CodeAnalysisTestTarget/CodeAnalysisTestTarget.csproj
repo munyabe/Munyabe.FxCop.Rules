@@ -40,11 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Maintainability\DoNotInitializeFieldsToDefaultValueTarget.cs" />
+    <Compile Include="Performance\AvoidUnnecessaryFieldInitializationTarget.cs" />
     <Compile Include="Maintainability\MarkPrivateFieldsAsReadOnlyTarget.cs" />
     <Compile Include="Performance\AvoidEnumGetHashCodeTarget.cs" />
     <Compile Include="Performance\AvoidUnnecessaryEnumerableCountTarget.cs" />
-    <Compile Include="Performance\DoNotCompareEnumerableCountToZeroTarget.cs" />
+    <Compile Include="Performance\UseEnumerableAnyTarget.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Design\DoMakeExceptionsSerializableTarget.cs" />
   </ItemGroup>
