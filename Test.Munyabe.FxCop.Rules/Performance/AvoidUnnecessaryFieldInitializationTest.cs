@@ -1,13 +1,76 @@
 ﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Munyabe.FxCop.Performance;
 
-namespace CodeAnalysisTestTarget.Performance
+namespace Test.Munyabe.FxCop.Rules.Performance
 {
     /// <summary>
-    /// <c>AvoidUnnecessaryFieldInitialization</c>の解析ルールを確認するためのクラスです。
+    /// <see cref="AvoidUnnecessaryFieldInitialization"/>のルールをテストするクラスです。
     /// </summary>
-    public class AvoidUnnecessaryFieldInitializationTarget
+    [TestClass]
+    public class AvoidUnnecessaryFieldInitializationTest : CheckMemberRuleTestBase<AvoidUnnecessaryFieldInitialization>
     {
-        public class OK_FieldInitialize
+        [TestMethod]
+        public void FieldInitializeTest()
+        {
+            Assert.IsTrue(IsSuccess<FieldInitialize>(".ctor"));
+        }
+
+        [TestMethod]
+        public void StaticFieldInitializeTest()
+        {
+            Assert.IsTrue(IsSuccess<StaticFieldInitialize>(".cctor"));
+        }
+
+        [TestMethod]
+        public void ConstructorInitializeTest()
+        {
+            Assert.IsTrue(IsSuccess<ConstructorInitialize>(".ctor"));
+        }
+
+        [TestMethod]
+        public void StaticConstructorInitializeTest()
+        {
+            Assert.IsTrue(IsSuccess<StaticConstructorInitialize>(".cctor"));
+        }
+
+        [TestMethod]
+        public void NotInitializeTest()
+        {
+            Assert.IsTrue(IsSuccess<NotInitialize>(".ctor"));
+        }
+
+        [TestMethod]
+        public void OtherInitializeTest()
+        {
+            Assert.IsTrue(IsSuccess<OtherInitialize>(".ctor"));
+        }
+
+        [TestMethod]
+        public void SetByLambdaTest()
+        {
+            Assert.IsTrue(IsSuccess<SetByLambda>(".ctor"));
+        }
+
+        [TestMethod]
+        public void UnnecessaryFieldInitializeTest()
+        {
+            Assert.IsTrue(IsFailuer<UnnecessaryFieldInitialize>(".ctor", 18));
+        }
+
+        [TestMethod]
+        public void UnnecessaryStaticFieldInitializeTest()
+        {
+            Assert.IsTrue(IsFailuer<UnnecessaryStaticFieldInitialize>(".cctor"));
+        }
+
+        [TestMethod]
+        public void UnnecessaryConstructorInitializeTest()
+        {
+            Assert.IsTrue(IsFailuer<UnnecessaryConstructorInitialize>(".ctor"));
+        }
+
+        public class FieldInitialize
         {
             private readonly byte _byte = 1;
             private readonly short _short = 1;
@@ -37,33 +100,33 @@ namespace CodeAnalysisTestTarget.Performance
             private readonly string _string = "OK";
         }
 
-        public class OK_StaticFieldInitialize
+        public class StaticFieldInitialize
         {
             private static readonly string _string = "OK";
             private static readonly string _initializedConstructor = string.Empty;
         }
 
-        public class OK_ConstructorInitialize
+        public class ConstructorInitialize
         {
             private readonly string _field;
 
-            public OK_ConstructorInitialize()
+            public ConstructorInitialize()
             {
                 _field = null;
             }
         }
 
-        public class OK_StaticConstructorInitialize
+        public class StaticConstructorInitialize
         {
             private static readonly string _field;
 
-            static OK_StaticConstructorInitialize()
+            static StaticConstructorInitialize()
             {
                 _field = null;
             }
         }
 
-        public class OK_NotInitialize
+        public class NotInitialize
         {
             private readonly byte _byte;
             private readonly short _short;
@@ -79,7 +142,7 @@ namespace CodeAnalysisTestTarget.Performance
             private readonly string _string;
         }
 
-        public class OK_OtherInitialize
+        public class OtherInitialize
         {
             private readonly DateTime _dateTime = new DateTime();
             private const int CONST = 0;
@@ -89,7 +152,7 @@ namespace CodeAnalysisTestTarget.Performance
 
             public int Property { get; set; }
 
-            public OK_OtherInitialize()
+            public OtherInitialize()
             {
                 Property = 0;
                 Initialize();
@@ -106,17 +169,17 @@ namespace CodeAnalysisTestTarget.Performance
             }
         }
 
-        public class OK_SetLambda
+        public class SetByLambda
         {
             private string _field;
 
-            public OK_SetLambda()
+            public SetByLambda()
             {
                 EventHandler handler = (sender, e) => _field = "OK";
             }
         }
 
-        public class NG_FieldInitialize
+        public class UnnecessaryFieldInitialize
         {
             private readonly byte _byte = 0;
             private readonly short _short = 0;
@@ -146,16 +209,16 @@ namespace CodeAnalysisTestTarget.Performance
             private readonly string _string = null;
         }
 
-        public class NG_StaticFieldInitialize
+        public class UnnecessaryStaticFieldInitialize
         {
             private static readonly string _string = null;
         }
 
-        public class NG_ConstructorInitialize
+        public class UnnecessaryConstructorInitialize
         {
             private readonly string _field = null;
 
-            public NG_ConstructorInitialize()
+            public UnnecessaryConstructorInitialize()
             {
                 _field = "NG";
             }

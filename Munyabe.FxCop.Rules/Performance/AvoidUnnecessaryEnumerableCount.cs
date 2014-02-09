@@ -10,8 +10,15 @@ namespace Munyabe.FxCop.Performance
     /// </summary>
     public class AvoidUnnecessaryEnumerableCount : BaseRule
     {
-        private const string RESOLUTION_NAME_ARRAY = "Array";
-        private const string RESOLUTION_NAME_ICOLLECTION = "ICollection";
+        /// <summary>
+        /// ルール違反の原因が配列であることを示すカテゴリーです。
+        /// </summary>
+        public const string ArrayResolutionName = "Array";
+
+        /// <summary>
+        /// ルール違反の原因がコレクションであることを示すカテゴリーです。
+        /// </summary>
+        public const string ICollectionResolutionName = "ICollection";
 
         /// <summary>
         /// インスタンスを初期化します。
@@ -58,12 +65,12 @@ namespace Munyabe.FxCop.Performance
             var typeNode = operand.Type;
             if (typeNode.IsAssignableTo(FrameworkTypes.Array))
             {
-                resolutionName = RESOLUTION_NAME_ARRAY;
+                resolutionName = ArrayResolutionName;
                 return true;
             }
             else if (typeNode.IsGeneric && typeNode.Template.IsAssignableTo(FrameworkTypes.GenericICollection))
             {
-                resolutionName = RESOLUTION_NAME_ICOLLECTION;
+                resolutionName = ICollectionResolutionName;
                 return true;
             }
             else

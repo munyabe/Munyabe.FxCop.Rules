@@ -1,16 +1,31 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Munyabe.FxCop.Performance;
 
-namespace CodeAnalysisTestTarget.Performance
+namespace Test.Munyabe.FxCop.Rules.Performance
 {
     /// <summary>
-    /// <c>UseEnumerableAny</c>の解析ルールを確認するためのクラスです。
+    /// <see cref="UseEnumerableAny"/>のルールをテストするクラスです。
     /// </summary>
-    public class UseEnumerableAnyTarget
+    [TestClass]
+    public class UseEnumerableAnyTest : CheckMemberRuleTestBase<UseEnumerableAny>
     {
+        [TestMethod]
+        public void SuccessTest()
+        {
+            Assert.IsTrue(IsSuccess("Success"));
+        }
+
+        [TestMethod]
+        public void FailuerTest()
+        {
+            Assert.IsTrue(IsFailuer("Failuer", 12));
+        }
+
         private readonly IEnumerable<int> _field = Enumerable.Range(0, 3);
 
-        public void OK()
+        public void Success()
         {
             var eql = _field.Count() == 1;
             var let = _field.Count() < 1;
@@ -20,7 +35,7 @@ namespace CodeAnalysisTestTarget.Performance
             var gte = _field.Count() >= 1;
         }
 
-        public void NG()
+        public void Failuer()
         {
             var eql1 = _field.Count() == 0;
             var let1 = _field.Count() < 0;
