@@ -41,16 +41,12 @@ namespace Munyabe.FxCop.Maintainability
         /// <inheritdoc />
         public override void VisitAssignmentStatement(AssignmentStatement assignment)
         {
+            base.VisitAssignmentStatement(assignment);
+
             var field = GetAssignmentField(assignment);
             if (field != null)
             {
                 _assignmentFields.Add(field.Name);
-            }
-
-            var call = assignment.Source as MethodCall;
-            if (call != null)
-            {
-                VisitMethodCall(call);
             }
         }
 

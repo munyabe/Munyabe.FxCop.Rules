@@ -43,16 +43,16 @@ namespace Munyabe.FxCop.Performance
         public override void VisitMethodCall(MethodCall call)
         {
             string resolutionName;
-            if (call.IsCall(SystemMembers.Enumerable_Count) && IsWrongCall(call, out resolutionName))
+            if (call.IsCall(SystemMembers.Enumerable_Count) && IsUnnecessaryCall(call, out resolutionName))
             {
                 Problems.Add(CreateProblem(resolutionName, call));
             }
         }
 
         /// <summary>
-        /// 誤った<see cref="Enumerable.Count{T}(IEnumerable{T})"/>の呼び出しかどうかを判定します。
+        /// 不要な<see cref="Enumerable.Count{T}(IEnumerable{T})"/>の呼び出しかどうかを判定します。
         /// </summary>
-        private static bool IsWrongCall(MethodCall call, out string resolutionName)
+        private static bool IsUnnecessaryCall(MethodCall call, out string resolutionName)
         {
             resolutionName = string.Empty;
 
