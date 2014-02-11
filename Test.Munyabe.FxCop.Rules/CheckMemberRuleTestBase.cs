@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Xml.Linq;
 using Microsoft.FxCop.Sdk;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -129,6 +130,15 @@ namespace Test.Munyabe.FxCop.Rules
         /// </summary>
         private IEnumerable<XElement> GetIssues(Type type, string memberName)
         {
+            if (type.GetMember(memberName).Any() == false)
+            {
+                var cctor = type.GetConstructors(BindingFlags.Static | BindingFlags.NonPublic).FirstOrDefault();
+                if (cctor == null || cctor.Name != memberName)
+                {
+                    throw new ArgumentException(string.Format("The member '{0}' is not found.", memberName));
+                }
+            }
+
             var targetName = string.Format("#{0}()", memberName);
             return GetIssues(type, typeElement =>
                 {
