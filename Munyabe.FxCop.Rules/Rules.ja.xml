@@ -51,7 +51,17 @@
     <MessageLevel Certainty="95">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>
   </Rule>
-  <Rule Category="Munyabe.Performance" CheckId="MU1803" TypeName="AvoidEnumGetHashCode">
+  <Rule Category="Munyabe.Performance" CheckId="MU1803" TypeName="AvoidRepetitiveFirstEnumeration">
+    <Name>最初の要素を繰り返し列挙しないでください</Name>
+    <Description>同じ値に対して最初の要素を繰り返し列挙しています。列挙はコストが高いので、減らしてください。</Description>
+    <Owner>munyabe</Owner>
+    <Email></Email>
+    <Url></Url>
+    <Resolution>Enumerable.FirstOrDefault を使用し、null かどうかチェックしてください。</Resolution>
+    <MessageLevel Certainty="75">Warning</MessageLevel>
+    <FixCategories>NonBreaking</FixCategories>
+  </Rule>
+  <Rule Category="Munyabe.Performance" CheckId="MU1804" TypeName="AvoidEnumGetHashCode">
     <Name>Enum.GetHashCode を使用しないでください</Name>
     <Description>Enum.GetHashCode はコストが高いため、使用しないでください。</Description>
     <Owner>munyabe</Owner>

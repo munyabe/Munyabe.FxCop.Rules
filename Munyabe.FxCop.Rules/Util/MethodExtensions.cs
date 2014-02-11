@@ -18,5 +18,18 @@ namespace Munyabe.FxCop.Util
 
             return method is InstanceInitializer || method is StaticInitializer;
         }
+
+        /// <summary>
+        /// 自動生成されたプロパティのメソッドかどうかを判定します。
+        /// </summary>
+        /// <param name="method">判定するメソッド</param>
+        /// <returns>プロパティのメソッドの場合は<see langword="true"/></returns>
+        public static bool IsPropertyAccessor(this Method method)
+        {
+            Guard.ArgumentNotNull(method, "method");
+
+            var name = method.Name.Name;
+            return name.StartsWith("get_") || name.StartsWith("set_");
+        }
     }
 }

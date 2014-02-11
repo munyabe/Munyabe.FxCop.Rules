@@ -17,9 +17,32 @@ namespace Munyabe.FxCop.Util
         /// <summary>
         /// <see cref="Enumerable.Count{T}(IEnumerable{T})"/>のメソッドです。
         /// </summary>
-        public static Method Enumerable_Count = FrameworkAssemblies.SystemCore.GetType(Identifier.For("System.Linq"), Identifier.For("Enumerable"))
-            .GetMembersNamed(Identifier.For("Count"))
-            .OfType<Method>()
-            .FirstOrDefault(method => method.Parameters.Count == 1 && method.Parameters[0].Type.IsAssignableToInstanceOf(FrameworkTypes.GenericIEnumerable));
+        public static Method Enumerable_Count = GetOneParamEnumerableMethod("Count");
+
+        /// <summary>
+        /// <see cref="Enumerable.Any{T}(IEnumerable{T})"/>のメソッドです。
+        /// </summary>
+        public static Method Enumerable_Any = GetOneParamEnumerableMethod("Any");
+
+        /// <summary>
+        /// <see cref="Enumerable.First{T}(IEnumerable{T})"/>のメソッドです。
+        /// </summary>
+        public static Method Enumerable_First = GetOneParamEnumerableMethod("First");
+
+        /// <summary>
+        /// <see cref="Enumerable.FirstOrDefault{T}(IEnumerable{T})"/>のメソッドです。
+        /// </summary>
+        public static Method Enumerable_FirstOrDefault = GetOneParamEnumerableMethod("FirstOrDefault");
+
+        /// <summary>
+        /// <see cref="IEnumerable{T}"/>のパラメーターのみ取る<see cref="Enumerable"/>のメソッドを取得します。
+        /// </summary>
+        private static Method GetOneParamEnumerableMethod(string methodName)
+        {
+            return FrameworkAssemblies.SystemCore.GetType(Identifier.For("System.Linq"), Identifier.For("Enumerable"))
+                .GetMembersNamed(Identifier.For(methodName))
+                .OfType<Method>()
+                .FirstOrDefault(method => method.Parameters.Count == 1 && method.Parameters[0].Type.IsAssignableToInstanceOf(FrameworkTypes.GenericIEnumerable));
+        }
     }
 }

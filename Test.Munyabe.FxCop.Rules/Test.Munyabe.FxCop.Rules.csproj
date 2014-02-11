@@ -60,6 +60,7 @@
     <Compile Include="Design\DoMakeExceptionsSerializableTest.cs" />
     <Compile Include="Maintainability\MarkPrivateFieldsAsReadOnlyTest.cs" />
     <Compile Include="Performance\AvoidEnumGetHashCodeTest.cs" />
+    <Compile Include="Performance\AvoidRepetitiveFirstEnumerationTest.cs" />
     <Compile Include="Performance\AvoidUnnecessaryEnumerableCountTest.cs" />
     <Compile Include="Performance\AvoidUnnecessaryFieldInitializationTest.cs" />
     <Compile Include="Performance\UseEnumerableAnyTest.cs" />

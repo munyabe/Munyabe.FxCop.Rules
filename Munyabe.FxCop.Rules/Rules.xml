@@ -51,7 +51,17 @@
     <MessageLevel Certainty="95">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>
   </Rule>
-  <Rule Category="Munyabe.Performance" CheckId="MU1803" TypeName="AvoidEnumGetHashCode">
+  <Rule Category="Munyabe.Performance" CheckId="MU1803" TypeName="AvoidRepetitiveFirstEnumeration">
+    <Name>Avoid repetitive first enumeration</Name>
+    <Description>The multiple first enumerations are done on the same value. Enumerations are expensive so reducing them.</Description>
+    <Owner>munyabe</Owner>
+    <Email></Email>
+    <Url></Url>
+    <Resolution>Use Enumerable.FirstOrDefault and check for null.</Resolution>
+    <MessageLevel Certainty="75">Warning</MessageLevel>
+    <FixCategories>NonBreaking</FixCategories>
+  </Rule>
+  <Rule Category="Munyabe.Performance" CheckId="MU1804" TypeName="AvoidEnumGetHashCode">
     <Name>Avoid calling Enum.GetHashCode</Name>
     <Description>Avoid calling Enum.GetHashCode, since this method requires a cost.</Description>
     <Owner>munyabe</Owner>

@@ -19,7 +19,13 @@ namespace Munyabe.FxCop.Util
             Guard.ArgumentNotNull(expectedMethod, "expectedMethod");
 
             var method = GetMethod(call);
-            return method != null && method.Template == expectedMethod;
+
+            if (method == null)
+            {
+                return false;
+            }
+
+            return method.IsGeneric ? method.Template == expectedMethod : method == expectedMethod;
         }
 
         /// <summary>
@@ -33,6 +39,28 @@ namespace Munyabe.FxCop.Util
 
             var method = GetMethod(call);
             return method != null && method.IsInitializer();
+        }
+
+        /// <summary>
+        /// プロパティの呼び出しかどうかを判定します。
+        /// </summary>
+        /// <param name="call">判定するメソッド呼び出し</param>
+        /// <returns>プロパティの呼び出しの場合は<see langword="true"/></returns>
+        public static bool IsPropertyCall(this MethodCall call)
+        {
+            Guard.ArgumentNotNull(call, "call");
+
+            if (call != null)
+            {
+                var propertyBinding = call.Callee as MemberBinding;
+                if (propertyBinding != null)
+                {
+                    var accessor = propertyBinding.BoundMember as Method;
+                    return accessor != null && accessor.IsPropertyAccessor();
+                }
+            }
+
+            return false;
         }
 
         /// <summary>

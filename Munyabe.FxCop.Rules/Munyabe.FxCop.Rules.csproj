@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseRule.cs" />
+    <Compile Include="Performance\AvoidRepetitiveFirstEnumeration.cs" />
     <Compile Include="Performance\AvoidUnnecessaryFieldInitialization.cs" />
     <Compile Include="Maintainability\MarkPrivateFieldsAsReadOnly.cs" />
     <Compile Include="Performance\AvoidEnumGetHashCode.cs" />
