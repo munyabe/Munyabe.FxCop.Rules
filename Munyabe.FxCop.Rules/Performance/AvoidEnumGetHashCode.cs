@@ -31,6 +31,8 @@ namespace Munyabe.FxCop.Performance
         /// <inheritdoc />
         public override void VisitMethodCall(MethodCall call)
         {
+            base.VisitMethodCall(call);
+
             if (IsEnumGetHashCodeCall(call))
             {
                 Problems.Add(CreateProblem(call));

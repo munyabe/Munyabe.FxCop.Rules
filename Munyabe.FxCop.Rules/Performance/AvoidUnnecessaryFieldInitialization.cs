@@ -33,6 +33,8 @@ namespace Munyabe.FxCop.Performance
         /// <inheritdoc />
         public override void VisitAssignmentStatement(AssignmentStatement assignment)
         {
+            base.VisitAssignmentStatement(assignment);
+
             if (IsDefaultValue(assignment.Target.Type, assignment.Source))
             {
                 Problems.Add(CreateProblem(assignment));

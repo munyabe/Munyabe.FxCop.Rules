@@ -42,6 +42,8 @@ namespace Munyabe.FxCop.Performance
         /// <inheritdoc />
         public override void VisitMethodCall(MethodCall call)
         {
+            base.VisitMethodCall(call);
+
             string resolutionName;
             if (call.IsCall(SystemMembers.Enumerable_Count) && IsUnnecessaryCall(call, out resolutionName))
             {

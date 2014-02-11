@@ -53,6 +53,8 @@ namespace Munyabe.FxCop.Maintainability
         /// <inheritdoc />
         public override void VisitMethodCall(MethodCall call)
         {
+            base.VisitMethodCall(call);
+
             call.Operands
                 .Where(operand => operand.Type is Reference)
                 .OfType<UnaryExpression>()
