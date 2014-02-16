@@ -26,7 +26,7 @@
     <Owner>munyabe</Owner>
     <Email></Email>
     <Url></Url>
-    <Resolution>この初期化を削除してください。</Resolution>
+    <Resolution>初期化しないでください。</Resolution>
     <MessageLevel Certainty="75">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>
   </Rule>
@@ -61,7 +61,17 @@
     <MessageLevel Certainty="75">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>
   </Rule>
-  <Rule Category="Munyabe.Performance" CheckId="MU1804" TypeName="AvoidEnumGetHashCode">
+  <Rule Category="Munyabe.Performance" CheckId="MU1804" TypeName="AvoidRepetitiveAccessDictionaryKey">
+    <Name>Dictionary の同一のキーに繰り返しアクセスしないでください</Name>
+    <Description>同じ Dictionary に対して同じキーで繰り返しアクセスしています。</Description>
+    <Owner>munyabe</Owner>
+    <Email></Email>
+    <Url></Url>
+    <Resolution>IDictionary.TryGetValue を使用してください。</Resolution>
+    <MessageLevel Certainty="75">Warning</MessageLevel>
+    <FixCategories>NonBreaking</FixCategories>
+  </Rule>
+  <Rule Category="Munyabe.Performance" CheckId="MU1805" TypeName="AvoidEnumGetHashCode">
     <Name>Enum.GetHashCode を使用しないでください</Name>
     <Description>Enum.GetHashCode はコストが高いため、使用しないでください。</Description>
     <Owner>munyabe</Owner>

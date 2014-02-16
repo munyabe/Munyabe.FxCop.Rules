@@ -8,6 +8,47 @@ namespace Munyabe.FxCop.Util
     public static class MethodCallExtensions
     {
         /// <summary>
+        /// メソッドが呼び出されたローカル変数、フィールドまたはプロパティを取得します。
+        /// それ以外の場合は<see langword="null"/>を返します。
+        /// </summary>
+        /// <param name="call">呼び出されたメソッド</param>
+        /// <returns>メソッドが呼び出されたローカル変数、フィールドまたはプロパティ</returns>
+        public static Node GetCalledNode(this MethodCall call)
+        {
+            var target = GetTargetObject(call);
+            if (target is Local)
+            {
+                return target;
+            }
+            else
+            {
+                // MEMO : フィールド
+                var binding = target as MemberBinding;
+                if (binding != null)
+                {
+                    return binding.BoundMember;
+                }
+
+                // MEMO : プロパティ
+                var propertyCall = target as MethodCall;
+                if (propertyCall != null)
+                {
+                    var propertyBinding = propertyCall.Callee as MemberBinding;
+                    if (propertyBinding != null)
+                    {
+                        var accessor = propertyBinding.BoundMember as Method;
+                        if (accessor != null && accessor.IsPropertyAccessor())
+                        {
+                            return accessor;
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
         /// 指定のメソッドの呼び出しかどうかを判定します。
         /// </summary>
         /// <param name="call">判定するメソッド呼び出し</param>
@@ -18,49 +59,14 @@ namespace Munyabe.FxCop.Util
             Guard.ArgumentNotNull(call, "call");
             Guard.ArgumentNotNull(expectedMethod, "expectedMethod");
 
-            var method = GetMethod(call);
-
-            if (method == null)
+            var calledMethod = GetMethod(call);
+            if (calledMethod == null)
             {
                 return false;
             }
 
-            return method.IsGeneric ? method.Template == expectedMethod : method == expectedMethod;
-        }
-
-        /// <summary>
-        /// コンストラクターの呼び出しかどうかを判定します。
-        /// </summary>
-        /// <param name="call">判定するメソッド呼び出し</param>
-        /// <returns>コンストラクターの呼び出しの場合は<see langword="true"/></returns>
-        public static bool IsInitializerCall(this MethodCall call)
-        {
-            Guard.ArgumentNotNull(call, "call");
-
-            var method = GetMethod(call);
-            return method != null && method.IsInitializer();
-        }
-
-        /// <summary>
-        /// プロパティの呼び出しかどうかを判定します。
-        /// </summary>
-        /// <param name="call">判定するメソッド呼び出し</param>
-        /// <returns>プロパティの呼び出しの場合は<see langword="true"/></returns>
-        public static bool IsPropertyCall(this MethodCall call)
-        {
-            Guard.ArgumentNotNull(call, "call");
-
-            if (call != null)
-            {
-                var propertyBinding = call.Callee as MemberBinding;
-                if (propertyBinding != null)
-                {
-                    var accessor = propertyBinding.BoundMember as Method;
-                    return accessor != null && accessor.IsPropertyAccessor();
-                }
-            }
-
-            return false;
+            var method = calledMethod.IsGeneric ? calledMethod.Template : calledMethod;
+            return method == expectedMethod || method.IsInherit(expectedMethod);
         }
 
         /// <summary>
@@ -75,6 +81,20 @@ namespace Munyabe.FxCop.Util
             }
 
             return member.BoundMember as Method;
+        }
+
+        /// <summary>
+        /// メソッドが呼び出された式を取得します。
+        /// </summary>
+        private static Expression GetTargetObject(MethodCall call)
+        {
+            var binding = call.Callee as MemberBinding;
+            if (binding == null)
+            {
+                return null;
+            }
+
+            return binding.TargetObject ?? call.Operands[0];
         }
     }
 }

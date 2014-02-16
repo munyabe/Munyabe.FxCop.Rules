@@ -35,6 +35,16 @@ namespace Munyabe.FxCop.Util
         public static Method Enumerable_FirstOrDefault = GetOneParamEnumerableMethod("FirstOrDefault");
 
         /// <summary>
+        /// <see cref="IDictionary{T1, T2}.ContainsKey"/>のメソッドです。
+        /// </summary>
+        public static Method IDictionary_ContainsKey = FrameworkTypes.GenericIDictionary.GetMethodNamed("ContainsKey");
+
+        /// <summary>
+        /// <see cref="IDictionary{T1, T2}"/>のインデクサーで取得するメソッドです。
+        /// </summary>
+        public static Method IDictionary_GetIndexer = FrameworkTypes.GenericIDictionary.GetMethodNamed("get_Item");
+
+        /// <summary>
         /// <see cref="IEnumerable{T}"/>のパラメーターのみ取る<see cref="Enumerable"/>のメソッドを取得します。
         /// </summary>
         private static Method GetOneParamEnumerableMethod(string methodName)
@@ -42,7 +52,7 @@ namespace Munyabe.FxCop.Util
             return FrameworkAssemblies.SystemCore.GetType(Identifier.For("System.Linq"), Identifier.For("Enumerable"))
                 .GetMembersNamed(Identifier.For(methodName))
                 .OfType<Method>()
-                .FirstOrDefault(method => method.Parameters.Count == 1 && method.Parameters[0].Type.IsAssignableToInstanceOf(FrameworkTypes.GenericIEnumerable));
+                .First(method => method.Parameters.Count == 1 && method.Parameters[0].Type.IsAssignableToInstanceOf(FrameworkTypes.GenericIEnumerable));
         }
     }
 }

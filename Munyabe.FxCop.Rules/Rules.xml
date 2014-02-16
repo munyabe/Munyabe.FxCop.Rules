@@ -61,7 +61,17 @@
     <MessageLevel Certainty="75">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>
   </Rule>
-  <Rule Category="Munyabe.Performance" CheckId="MU1804" TypeName="AvoidEnumGetHashCode">
+  <Rule Category="Munyabe.Performance" CheckId="MU1804" TypeName="AvoidRepetitiveAccessDictionaryKey">
+    <Name>Avoid repetitive access Dictionary key</Name>
+    <Description>The multiple accesses for same key are done on the same dictionary.</Description>
+    <Owner>munyabe</Owner>
+    <Email></Email>
+    <Url></Url>
+    <Resolution>Use IDictionary.TryGetValue.</Resolution>
+    <MessageLevel Certainty="75">Warning</MessageLevel>
+    <FixCategories>NonBreaking</FixCategories>
+  </Rule>
+  <Rule Category="Munyabe.Performance" CheckId="MU1805" TypeName="AvoidEnumGetHashCode">
     <Name>Avoid calling Enum.GetHashCode</Name>
     <Description>Avoid calling Enum.GetHashCode, since this method requires a cost.</Description>
     <Owner>munyabe</Owner>

@@ -49,7 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Performance\AvoidRepetitiveMethodCallBase.cs" />
     <Compile Include="BaseRule.cs" />
+    <Compile Include="Performance\AvoidRepetitiveAccessDictionaryKey.cs" />
     <Compile Include="Performance\AvoidRepetitiveFirstEnumeration.cs" />
     <Compile Include="Performance\AvoidUnnecessaryFieldInitialization.cs" />
     <Compile Include="Maintainability\MarkPrivateFieldsAsReadOnly.cs" />
@@ -70,6 +72,7 @@
     <Compile Include="Util\MethodExtensions.cs" />
     <Compile Include="Util\SystemMembers.cs" />
     <Compile Include="Util\SystemTypes.cs" />
+    <Compile Include="Util\TypeNodeExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

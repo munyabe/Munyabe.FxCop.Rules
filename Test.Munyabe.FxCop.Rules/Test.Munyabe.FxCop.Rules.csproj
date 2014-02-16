@@ -62,6 +62,7 @@
     <Compile Include="Design\DoMakeExceptionsSerializableTest.cs" />
     <Compile Include="Maintainability\MarkPrivateFieldsAsReadOnlyTest.cs" />
     <Compile Include="Performance\AvoidEnumGetHashCodeTest.cs" />
+    <Compile Include="Performance\AvoidRepetitiveAccessDictionaryKeyTest.cs" />
     <Compile Include="Performance\AvoidRepetitiveFirstEnumerationTest.cs" />
     <Compile Include="Performance\AvoidUnnecessaryEnumerableCountTest.cs" />
     <Compile Include="Performance\AvoidUnnecessaryFieldInitializationTest.cs" />
@@ -74,6 +75,7 @@
     </Compile>
     <Compile Include="RuleTestBase.cs" />
     <Compile Include="Util\IEnumerableExtensions.cs" />
+    <Compile Include="Util\MethodExtensionsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Munyabe.FxCop.Rules\Munyabe.FxCop.Rules.csproj">
