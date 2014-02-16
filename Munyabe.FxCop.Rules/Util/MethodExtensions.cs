@@ -34,7 +34,7 @@ namespace Munyabe.FxCop.Util
 
             return targetMethod.DeclaringType.IsAssignableTo(targetBaseMethod.DeclaringType) &&
                 targetMethod.Name.Name == targetBaseMethod.Name.Name &&
-                targetMethod.ReturnTypeMatchStructurally(targetBaseMethod.ReturnType) &&
+                ReturnTypeMatchStructurally(targetMethod, targetBaseMethod.ReturnType) &&
                 targetMethod.ParametersMatchStructurally(targetBaseMethod.Parameters);
         }
 
@@ -69,7 +69,7 @@ namespace Munyabe.FxCop.Util
         /// <param name="method">判定するメソッド</param>
         /// <param name="type">戻り値の型</param>
         /// <returns>戻り値の型の構造が一致する場合は<see langword="true"/></returns>
-        public static bool ReturnTypeMatchStructurally(this Method method, TypeNode type)
+        private static bool ReturnTypeMatchStructurally(Method method, TypeNode type)
         {
             Guard.ArgumentNotNull(method, "method");
 

@@ -72,7 +72,6 @@
     <Compile Include="Util\MethodExtensions.cs" />
     <Compile Include="Util\SystemMembers.cs" />
     <Compile Include="Util\SystemTypes.cs" />
-    <Compile Include="Util\TypeNodeExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

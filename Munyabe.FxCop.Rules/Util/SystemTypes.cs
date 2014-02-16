@@ -5,7 +5,7 @@ namespace Munyabe.FxCop.Util
     /// <summary>
     /// <see cref="System"/>名前空間の型です。
     /// </summary>
-    public static class SystemTypes
+    internal static class SystemTypes
     {
         /// <summary>
         /// <see cref="System.EventHandler"/>のデリゲートです。

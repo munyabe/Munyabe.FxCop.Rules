@@ -37,12 +37,15 @@ namespace Munyabe.FxCop.Util
         /// <summary>
         /// <see cref="IDictionary{T1, T2}.ContainsKey"/>のメソッドです。
         /// </summary>
-        public static Method IDictionary_ContainsKey = FrameworkTypes.GenericIDictionary.GetMethodNamed("ContainsKey");
+        public static Method IDictionary_ContainsKey = FrameworkTypes.GenericIDictionary
+            .GetMethod(Identifier.For("ContainsKey"), FrameworkTypes.GenericIDictionary.TemplateParameters[0]);
 
         /// <summary>
         /// <see cref="IDictionary{T1, T2}"/>のインデクサーで取得するメソッドです。
         /// </summary>
-        public static Method IDictionary_GetIndexer = FrameworkTypes.GenericIDictionary.GetMethodNamed("get_Item");
+        public static Method IDictionary_GetIndexer = FrameworkTypes.GenericIDictionary
+            .GetProperty(Identifier.For("Item"), FrameworkTypes.GenericIDictionary.TemplateParameters[0])
+            .Getter;
 
         /// <summary>
         /// <see cref="IEnumerable{T}"/>のパラメーターのみ取る<see cref="Enumerable"/>のメソッドを取得します。
