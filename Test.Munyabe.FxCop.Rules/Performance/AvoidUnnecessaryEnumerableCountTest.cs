@@ -14,19 +14,19 @@ namespace Test.Munyabe.FxCop.Rules.Performance
         [TestMethod]
         public void SuccessTest()
         {
-            Assert.IsTrue(IsSuccess("Success"));
+            AssertIsSatisfied("Success");
         }
 
         [TestMethod]
         public void ArrayTest()
         {
-            Assert.IsTrue(IsFailuer("Array", AvoidUnnecessaryEnumerableCount.ArrayResolutionName));
+            AssertIsViolated("Array", AvoidUnnecessaryEnumerableCount.ArrayResolutionName);
         }
 
         [TestMethod]
         public void ICollectionTest()
         {
-            Assert.IsTrue(IsFailuer("ICollection", AvoidUnnecessaryEnumerableCount.ICollectionResolutionName));
+            AssertIsViolated("ICollection", AvoidUnnecessaryEnumerableCount.ICollectionResolutionName);
         }
 
         public void Success()

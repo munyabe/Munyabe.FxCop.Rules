@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
 using Microsoft.FxCop.Sdk;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Test.Munyabe.FxCop.Rules.Util;
 
 namespace Test.Munyabe.FxCop.Rules
 {
@@ -17,101 +15,92 @@ namespace Test.Munyabe.FxCop.Rules
     public abstract class CheckMemberRuleTestBase<TRule> : RuleTestBase<TRule> where TRule : BaseIntrospectionRule, new()
     {
         /// <summary>
-        /// 解析するメンバーに違反がないかどうか判定します。
+        /// 解析するメンバーがルールを満たしていることを検証します。
         /// </summary>
         /// <param name="memberName">解析するメンバー名</param>
-        /// <returns>違反がない場合は<see langword="true"/></returns>
-        protected bool IsSuccess(string memberName)
+        protected void AssertIsSatisfied(string memberName)
         {
-            return IsSuccessInternal(GetType(), memberName);
+            AssertIsSatisfiedInternal(GetType(), memberName);
         }
 
         /// <summary>
-        /// 解析するメンバーに違反がないかどうか判定します。
-        /// </summary>
-        /// <typeparam name="T">解析する型</typeparam>
-        /// <param name="memberName">解析するメンバー名</param>
-        /// <returns>違反がない場合は<see langword="true"/></returns>
-        protected bool IsSuccess<T>(string memberName)
-        {
-            return IsSuccessInternal(typeof(T), memberName);
-        }
-
-        /// <summary>
-        /// 解析するメンバーに違反が1つあるかどうか判定します。
-        /// </summary>
-        /// <param name="memberName">解析するメンバー名</param>
-        /// <returns>違反が1つある場合は<see langword="true"/></returns>
-        protected bool IsFailuer(string memberName)
-        {
-            return IsFailuer(memberName, 1);
-        }
-
-        /// <summary>
-        /// 解析するメンバーに違反が1つあるかどうか判定します。
+        /// 解析するメンバーがルールを満たしていることを検証します。
         /// </summary>
         /// <typeparam name="T">解析する型</typeparam>
         /// <param name="memberName">解析するメンバー名</param>
-        /// <returns>違反が1つある場合は<see langword="true"/></returns>
-        protected bool IsFailuer<T>(string memberName)
+        protected void AssertIsSatisfied<T>(string memberName)
         {
-            return IsFailuer<T>(memberName, 1);
+            AssertIsSatisfiedInternal(typeof(T), memberName);
         }
 
         /// <summary>
-        /// 解析するメンバーに指定の原因の違反が1つあるかどうか判定します。
+        /// 解析するメンバーに違反が1つあることを検証します。
         /// </summary>
         /// <param name="memberName">解析するメンバー名</param>
-        /// <param name="resolutionName">違反の原因名</param>
-        /// <returns>指定の原因の違反が1つある場合は<see langword="true"/></returns>
-        protected bool IsFailuer(string memberName, string resolutionName)
+        protected void AssertIsViolated(string memberName)
         {
-            return IsFailuerInternal(GetType(), memberName, resolutionName);
+            AssertIsViolated(memberName, 1);
         }
 
         /// <summary>
-        /// 解析するメンバーに指定の原因の違反が1つあるかどうか判定します。
+        /// 解析するメンバーに違反が1つあることを検証します。
         /// </summary>
         /// <typeparam name="T">解析する型</typeparam>
         /// <param name="memberName">解析するメンバー名</param>
-        /// <param name="resolutionName">違反の原因名</param>
-        /// <returns>指定の原因の違反が1つある場合は<see langword="true"/></returns>
-        protected bool IsFailuer<T>(string memberName, string resolutionName)
+        protected void AssertIsViolated<T>(string memberName)
         {
-            return IsFailuerInternal(typeof(T), memberName, resolutionName);
+            AssertIsViolated<T>(memberName, 1);
         }
 
         /// <summary>
-        /// 解析するメンバーに指定の数の違反があるかどうか判定します。
+        /// 解析するメンバーに指定の数の違反があることを検証します。
         /// </summary>
         /// <param name="memberName">解析するメンバー名</param>
         /// <param name="expectedCount">期待する違反の数</param>
-        /// <returns>指定の数の違反がある場合は<see langword="true"/></returns>
-        protected bool IsFailuer(string memberName, int expectedCount)
+        protected void AssertIsViolated(string memberName, int expectedCount)
         {
-            return IsFailuerInternal(GetType(), memberName, expectedCount);
+            AssertIsViolatedInternal(GetType(), memberName, expectedCount);
         }
 
         /// <summary>
-        /// 解析するメンバーに指定の数の違反があるかどうか判定します。
+        /// 解析するメンバーに指定の数の違反があることを検証します。
         /// </summary>
         /// <typeparam name="T">解析する型</typeparam>
         /// <param name="memberName">解析するメンバー名</param>
         /// <param name="expectedCount">期待する違反の数</param>
-        /// <returns>指定の数の違反がある場合は<see langword="true"/></returns>
-        protected bool IsFailuer<T>(string memberName, int expectedCount)
+        protected void AssertIsViolated<T>(string memberName, int expectedCount)
         {
-            return IsFailuerInternal(typeof(T), memberName, expectedCount);
+            AssertIsViolatedInternal(typeof(T), memberName, expectedCount);
+        }
+
+        /// <summary>
+        /// 解析するメンバーに指定の原因の違反が1つあることを検証します。
+        /// </summary>
+        /// <param name="memberName">解析するメンバー名</param>
+        /// <param name="resolutionName">違反の原因名</param>
+        protected void AssertIsViolated(string memberName, string resolutionName)
+        {
+            AssertIsViolatedInternal(GetType(), memberName, resolutionName);
+        }
+
+        /// <summary>
+        /// 解析するメンバーに指定の原因の違反が1つあることを検証します。
+        /// </summary>
+        /// <typeparam name="T">解析する型</typeparam>
+        /// <param name="memberName">解析するメンバー名</param>
+        /// <param name="resolutionName">違反の原因名</param>
+        protected void AssertIsViolated<T>(string memberName, string resolutionName)
+        {
+            AssertIsViolatedInternal(typeof(T), memberName, resolutionName);
         }
 
         /// <summary>
         /// 違反を検出できないことを確認します。
         /// </summary>
         /// <param name="memberName">解析するメンバー名</param>
-        /// <returns>違反を検出できない場合は<see langword="true"/></returns>
-        protected bool IsNotDetectable(string memberName)
+        protected void AssertIsNotDetectable(string memberName)
         {
-            return IsSuccess(memberName);
+            AssertIsSatisfied(memberName);
         }
 
         /// <summary>
@@ -119,16 +108,15 @@ namespace Test.Munyabe.FxCop.Rules
         /// </summary>
         /// <typeparam name="T">解析する型</typeparam>
         /// <param name="memberName">解析するメンバー名</param>
-        /// <returns>違反を検出できない場合は<see langword="true"/></returns>
-        protected bool IsNotDetectable<T>(string memberName)
+        protected void AssertIsNotDetectable<T>(string memberName)
         {
-            return IsSuccess<T>(memberName);
+            AssertIsSatisfied<T>(memberName);
         }
 
         /// <summary>
         /// 解析結果からルール違反を示す要素を取得します。
         /// </summary>
-        private IEnumerable<XElement> GetIssues(Type type, string memberName)
+        private XElement[] GetIssues(Type type, string memberName)
         {
             if (type.GetMember(memberName).Any() == false)
             {
@@ -145,32 +133,35 @@ namespace Test.Munyabe.FxCop.Rules
                     return typeElement.Element("Members").Elements("Member")
                         .Where(element => element.Attribute("Name").Value == targetName)
                         .FirstOrDefault();
-                });
+                })
+                .ToArray();
         }
 
         /// <summary>
-        /// 解析するメンバーに違反がないかどうか判定する内部メソッドです。
+        /// 解析するメンバーがルールを満たしていることを検証する内部メソッドです。
         /// </summary>
-        private bool IsSuccessInternal(Type type, string memberName)
+        private void AssertIsSatisfiedInternal(Type type, string memberName)
         {
-            return GetIssues(type, memberName).Any() == false;
+            Assert.AreEqual(0, GetIssues(type, memberName).Length, "The '{0}' includes violation.", memberName);
         }
 
         /// <summary>
-        /// 解析するメンバーに指定の数の違反があるかどうか判定する内部メソッドです。
+        /// 解析するメンバーに指定の数の違反があることを検証する内部メソッドです。
         /// </summary>
-        private bool IsFailuerInternal(Type type, string memberName, int expectedCount)
+        private void AssertIsViolatedInternal(Type type, string memberName, int expectedCount)
         {
-            return GetIssues(type, memberName).IsCount(expectedCount);
+            Assert.AreEqual(expectedCount, GetIssues(type, memberName).Length);
         }
 
         /// <summary>
-        /// 解析するメンバーに指定の原因の違反が1つあるかどうか判定する内部メソッドです。
+        /// 解析するメンバーに指定の原因の違反が1つあるあることを検証する内部メソッドです。
         /// </summary>
-        protected bool IsFailuerInternal(Type type, string memberName, string resolutionName)
+        private void AssertIsViolatedInternal(Type type, string memberName, string resolutionName)
         {
-            var issues = GetIssues(type, memberName).ToArray();
-            return issues.IsCount(1) && issues.First().Attribute("Name").Value == resolutionName;
+            var issues = GetIssues(type, memberName);
+
+            Assert.AreEqual(1, issues.Length);
+            Assert.AreEqual(resolutionName, issues[0].Attribute("Name").Value);
         }
     }
 }

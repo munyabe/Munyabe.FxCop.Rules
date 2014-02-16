@@ -14,61 +14,61 @@ namespace Test.Munyabe.FxCop.Rules.Performance
         [TestMethod]
         public void SuccessTest()
         {
-            Assert.IsTrue(IsSuccess("Success"));
+            AssertIsSatisfied("Success");
         }
 
         [TestMethod]
         public void CallMethodTest()
         {
-            Assert.IsTrue(IsSuccess("CallMethod"));
+            AssertIsSatisfied("CallMethod");
         }
 
         [TestMethod]
         public void AssignmentInBetweenTest()
         {
-            Assert.IsTrue(IsSuccess("AssignmentInBetween"));
+            AssertIsSatisfied("AssignmentInBetween");
         }
 
         [TestMethod]
         public void CallLocalVariableTest()
         {
-            Assert.IsTrue(IsFailuer("CallLocalVariable"));
+            AssertIsViolated("CallLocalVariable");
         }
 
         [TestMethod]
         public void CallFieldTest()
         {
-            Assert.IsTrue(IsFailuer("CallField"));
+            AssertIsViolated("CallField");
         }
 
         [TestMethod]
         public void CallPropertyTest()
         {
-            Assert.IsTrue(IsFailuer("CallProperty"));
+            AssertIsViolated("CallProperty");
         }
 
         [TestMethod]
         public void TernaryExpressionTest()
         {
-            Assert.IsTrue(IsFailuer("TernaryExpression"));
+            AssertIsViolated("TernaryExpression");
         }
 
         [TestMethod]
         public void CallTwoVariablesTest()
         {
-            Assert.IsTrue(IsFailuer("CallTwoVariables", 2));
+            AssertIsViolated("CallTwoVariables", 2);
         }
 
         [TestMethod]
         public void CallInMethodParamTest()
         {
-            Assert.IsTrue(IsFailuer("CallInMethodParam"));
+            AssertIsViolated("CallInMethodParam");
         }
 
         [TestMethod]
         public void CallFirstOrDefaultTest()
         {
-            Assert.IsTrue(IsFailuer("CallFirstOrDefault"));
+            AssertIsViolated("CallFirstOrDefault");
         }
 
         private readonly IEnumerable<string> _field = Enumerable.Empty<string>();

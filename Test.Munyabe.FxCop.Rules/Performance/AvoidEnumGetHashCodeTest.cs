@@ -12,13 +12,13 @@ namespace Test.Munyabe.FxCop.Rules.Performance
         [TestMethod]
         public void SuccessTest()
         {
-            Assert.IsTrue(IsSuccess("Success"));
+            AssertIsSatisfied("Success");
         }
 
         [TestMethod]
         public void FailuerTest()
         {
-            Assert.IsTrue(IsFailuer("Failuer"));
+            AssertIsViolated("Failuer");
         }
 
         public void Success()

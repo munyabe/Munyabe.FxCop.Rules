@@ -3,7 +3,6 @@ using System.Linq;
 using System.Xml.Linq;
 using Microsoft.FxCop.Sdk;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Test.Munyabe.FxCop.Rules.Util;
 
 namespace Test.Munyabe.FxCop.Rules
 {
@@ -15,65 +14,62 @@ namespace Test.Munyabe.FxCop.Rules
     public abstract class CheckTypeRuleTestBase<TRule> : RuleTestBase<TRule> where TRule : BaseIntrospectionRule, new()
     {
         /// <summary>
-        /// 解析する型に違反がないかどうか判定します。
+        /// 解析する型がルールを満たしていることを検証します。
         /// </summary>
         /// <typeparam name="T">解析する型</typeparam>
-        /// <returns>違反がない場合は<see langword="true"/></returns>
-        protected bool IsSuccess<T>()
+        protected void AssertIsSatisfied<T>()
         {
-            return GetIssues<T>().Any() == false;
+            Assert.AreEqual(0, GetIssues<T>().Length, "The '{0}' is violated.", typeof(T).Name);
         }
 
         /// <summary>
-        /// 解析する型に違反が1つあるかどうか判定します。
+        /// 解析する型に違反が1つあることを検証します。
         /// </summary>
         /// <typeparam name="T">解析する型</typeparam>
-        /// <returns>違反が1つある場合は<see langword="true"/></returns>
-        protected bool IsFailuer<T>()
+        protected void AssertIsViolated<T>()
         {
-            return IsFailuer<T>(1);
+            AssertIsViolated<T>(1);
         }
 
         /// <summary>
-        /// 解析する型に指定の原因の違反が1つあるかどうか判定します。
+        /// 解析する型に指定の数の違反があることを検証します。
+        /// </summary>
+        /// <typeparam name="T">解析する型</typeparam>
+        /// <param name="expectedCount">期待する違反の数</param>
+        protected void AssertIsViolated<T>(int expectedCount)
+        {
+            Assert.AreEqual(expectedCount, GetIssues<T>().Count());
+        }
+
+        /// <summary>
+        /// 解析する型に指定の原因の違反が1つあることを検証します。
         /// </summary>
         /// <typeparam name="T">解析する型</typeparam>
         /// <param name="memberName">解析する型</param>
         /// <param name="resolutionName">違反の原因名</param>
-        /// <returns>指定の原因の違反が1つある場合は<see langword="true"/></returns>
-        protected bool IsFailuer<T>(string resolutionName)
+        protected void AssertIsViolated<T>(string resolutionName)
         {
             var issues = GetIssues<T>().ToArray();
-            return issues.IsCount(1) && issues.First().Attribute("Name").Value == resolutionName;
-        }
 
-        /// <summary>
-        /// 解析する型に指定の数の違反があるかどうか判定します。
-        /// </summary>
-        /// <typeparam name="T">解析する型</typeparam>
-        /// <param name="expectedCount">期待する違反の数</param>
-        /// <returns>指定の数の違反がある場合は<see langword="true"/></returns>
-        protected bool IsFailuer<T>(int expectedCount)
-        {
-            return GetIssues<T>().IsCount(expectedCount);
+            Assert.AreEqual(1, issues.Length);
+            Assert.AreEqual(resolutionName, issues[0].Attribute("Name").Value);
         }
 
         /// <summary>
         /// 違反を検出できないことを確認します。
         /// </summary>
         /// <typeparam name="T">解析する型</typeparam>
-        /// <returns>違反を検出できない場合は<see langword="true"/></returns>
-        protected bool IsNotDetectable<T>()
+        protected void AssertIsNotDetectable<T>()
         {
-            return IsSuccess<T>();
+            AssertIsSatisfied<T>();
         }
 
         /// <summary>
         /// 解析結果からルール違反を示す要素を取得します。
         /// </summary>
-        private IEnumerable<XElement> GetIssues<T>()
+        private XElement[] GetIssues<T>()
         {
-            return GetIssues(typeof(T), element => element);
+            return GetIssues(typeof(T), element => element).ToArray();
         }
     }
 }

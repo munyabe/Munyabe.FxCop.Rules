@@ -15,187 +15,187 @@ namespace Test.Munyabe.FxCop.Rules.Maintainability
         [TestMethod]
         public void ReadonlyFieldTest()
         {
-            Assert.IsTrue(IsSuccess<ReadonlyField>());
+            AssertIsSatisfied<ReadonlyField>();
         }
 
         [TestMethod]
         public void SetFieldTest()
         {
-            Assert.IsTrue(IsSuccess<SetField>());
+            AssertIsSatisfied<SetField>();
         }
 
         [TestMethod]
         public void StaticFieldTest()
         {
-            Assert.IsTrue(IsSuccess<StaticField>());
+            AssertIsSatisfied<StaticField>();
         }
 
         [TestMethod]
         public void ConstMemberTest()
         {
-            Assert.IsTrue(IsSuccess<ConstMember>());
+            AssertIsSatisfied<ConstMember>();
         }
 
         [TestMethod]
         public void PublicPropertyTest()
         {
-            Assert.IsTrue(IsSuccess<PublicProperty>());
+            AssertIsSatisfied<PublicProperty>();
         }
 
         [TestMethod]
         public void PrivateSetPropertyTest()
         {
-            Assert.IsTrue(IsSuccess<PrivateSetProperty>());
+            AssertIsSatisfied<PrivateSetProperty>();
         }
 
         [TestMethod]
         public void GenericClassTest()
         {
-            Assert.IsTrue(IsSuccess<GenericClass<string>>());
+            AssertIsSatisfied<GenericClass<string>>();
         }
 
         [TestMethod]
         public void AbstractClassTest()
         {
-            Assert.IsTrue(IsSuccess<AbstractClass>());
+            AssertIsSatisfied<AbstractClass>();
         }
 
         [TestMethod]
         public void ParcialClassTest()
         {
-            Assert.IsTrue(IsSuccess<ParcialClass>());
+            AssertIsSatisfied<ParcialClass>();
         }
 
         [TestMethod]
         public void CanNotMarkReadonlyFieldTest()
         {
-            Assert.IsTrue(IsSuccess<CanNotMarkReadonlyField>());
+            AssertIsSatisfied<CanNotMarkReadonlyField>();
         }
 
         [TestMethod]
         public void IncrementOperatorTest()
         {
-            Assert.IsTrue(IsSuccess<IncrementOperator>());
+            AssertIsSatisfied<IncrementOperator>();
         }
 
         [TestMethod]
         public void TernaryExpressionTest()
         {
-            Assert.IsTrue(IsSuccess<TernaryExpression>());
+            AssertIsSatisfied<TernaryExpression>();
         }
 
         [TestMethod]
         public void NullTernaryExpressionTest()
         {
-            Assert.IsTrue(IsSuccess<NullTernaryExpression>());
+            AssertIsSatisfied<NullTernaryExpression>();
         }
 
         [TestMethod]
         public void ObjectInitializerTest()
         {
-            Assert.IsTrue(IsSuccess<ObjectInitializer>());
+            AssertIsSatisfied<ObjectInitializer>();
         }
 
         [TestMethod]
         public void RefParamMethodTest()
         {
-            Assert.IsTrue(IsSuccess<RefParamMethod>());
+            AssertIsSatisfied<RefParamMethod>();
         }
 
         [TestMethod]
         public void RefParamNotVoidMethodTest()
         {
-            Assert.IsTrue(IsSuccess<RefParamNotVoidMethod>());
+            AssertIsSatisfied<RefParamNotVoidMethod>();
         }
 
         [TestMethod]
         public void EventTest()
         {
-            Assert.IsTrue(IsSuccess<Event>());
+            AssertIsSatisfied<Event>();
         }
 
         [TestMethod]
         public void LambdaCacheTest()
         {
-            Assert.IsTrue(IsSuccess<LambdaCache>());
+            AssertIsSatisfied<LambdaCache>();
         }
 
         [TestMethod]
         public void SetByLambdaTest()
         {
-            Assert.IsTrue(IsSuccess<SetByLambda>());
+            AssertIsSatisfied<SetByLambda>();
         }
 
         [TestMethod]
         public void DelegateClosureTest()
         {
-            Assert.IsTrue(IsSuccess<DelegateClosure>());
+            AssertIsSatisfied<DelegateClosure>();
         }
 
         [TestMethod]
         public void LambdaClosureTest()
         {
-            Assert.IsTrue(IsSuccess<LambdaClosure>());
+            AssertIsSatisfied<LambdaClosure>();
         }
 
         [TestMethod]
         public void SetAndYieldReturnTest()
         {
-            Assert.IsTrue(IsSuccess<SetAndYieldReturn>());
+            AssertIsSatisfied<SetAndYieldReturn>();
         }
 
         [TestMethod]
         public void InitializedFieldTest()
         {
-            Assert.IsTrue(IsFailuer<InitializedField>());
+            AssertIsViolated<InitializedField>();
         }
 
         [TestMethod]
         public void ConstructorInitializedFieldTest()
         {
-            Assert.IsTrue(IsFailuer<ConstructorInitializedField>());
+            AssertIsViolated<ConstructorInitializedField>();
         }
 
         [TestMethod]
         public void NotSetFieldTest()
         {
-            Assert.IsTrue(IsFailuer<NotSetField>());
+            AssertIsViolated<NotSetField>();
         }
 
         [TestMethod]
         public void NotSetStaticFieldTest()
         {
-            Assert.IsTrue(IsFailuer<NotSetStaticField>());
+            AssertIsViolated<NotSetStaticField>();
         }
 
         [TestMethod]
         public void NotSetGenericClassTest()
         {
-            Assert.IsTrue(IsFailuer<NotSetGenericClass<string>>());
+            AssertIsViolated<NotSetGenericClass<string>>();
         }
 
         [TestMethod]
         public void DelegateFieldTest()
         {
-            Assert.IsTrue(IsFailuer<DelegateField>());
+            AssertIsViolated<DelegateField>();
         }
 
         [TestMethod]
         public void GetByLambdaTest()
         {
-            Assert.IsTrue(IsFailuer<GetByLambda>());
+            AssertIsViolated<GetByLambda>();
         }
 
         [TestMethod]
         public void ConstructorTernaryExpressionTest()
         {
-            Assert.IsTrue(IsNotDetectable<ConstructorTernaryExpression>());
+            AssertIsNotDetectable<ConstructorTernaryExpression>();
         }
 
         [TestMethod]
         public void YieldReturnTest()
         {
-            Assert.IsTrue(IsFailuer<YieldReturn>());
+            AssertIsViolated<YieldReturn>();
         }
 
         public class ReadonlyField

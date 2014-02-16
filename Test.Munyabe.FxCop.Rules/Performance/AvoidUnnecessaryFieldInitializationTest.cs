@@ -13,61 +13,61 @@ namespace Test.Munyabe.FxCop.Rules.Performance
         [TestMethod]
         public void FieldInitializeTest()
         {
-            Assert.IsTrue(IsSuccess<FieldInitialize>(".ctor"));
+            AssertIsSatisfied<FieldInitialize>(".ctor");
         }
 
         [TestMethod]
         public void StaticFieldInitializeTest()
         {
-            Assert.IsTrue(IsSuccess<StaticFieldInitialize>(".cctor"));
+            AssertIsSatisfied<StaticFieldInitialize>(".cctor");
         }
 
         [TestMethod]
         public void ConstructorInitializeTest()
         {
-            Assert.IsTrue(IsSuccess<ConstructorInitialize>(".ctor"));
+            AssertIsSatisfied<ConstructorInitialize>(".ctor");
         }
 
         [TestMethod]
         public void StaticConstructorInitializeTest()
         {
-            Assert.IsTrue(IsSuccess<StaticConstructorInitialize>(".cctor"));
+            AssertIsSatisfied<StaticConstructorInitialize>(".cctor");
         }
 
         [TestMethod]
         public void NotInitializeTest()
         {
-            Assert.IsTrue(IsSuccess<NotInitialize>(".ctor"));
+            AssertIsSatisfied<NotInitialize>(".ctor");
         }
 
         [TestMethod]
         public void OtherInitializeTest()
         {
-            Assert.IsTrue(IsSuccess<OtherInitialize>(".ctor"));
+            AssertIsSatisfied<OtherInitialize>(".ctor");
         }
 
         [TestMethod]
         public void SetByLambdaTest()
         {
-            Assert.IsTrue(IsSuccess<SetByLambda>(".ctor"));
+            AssertIsSatisfied<SetByLambda>(".ctor");
         }
 
         [TestMethod]
         public void UnnecessaryFieldInitializeTest()
         {
-            Assert.IsTrue(IsFailuer<UnnecessaryFieldInitialize>(".ctor", 18));
+            AssertIsViolated<UnnecessaryFieldInitialize>(".ctor", 18);
         }
 
         [TestMethod]
         public void UnnecessaryStaticFieldInitializeTest()
         {
-            Assert.IsTrue(IsFailuer<UnnecessaryStaticFieldInitialize>(".cctor"));
+            AssertIsViolated<UnnecessaryStaticFieldInitialize>(".cctor");
         }
 
         [TestMethod]
         public void UnnecessaryConstructorInitializeTest()
         {
-            Assert.IsTrue(IsFailuer<UnnecessaryConstructorInitialize>(".ctor"));
+            AssertIsViolated<UnnecessaryConstructorInitialize>(".ctor");
         }
 
         public class FieldInitialize
