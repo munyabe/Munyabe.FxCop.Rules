@@ -6,7 +6,7 @@
     <Owner>munyabe</Owner>
     <Email></Email>
     <Url>http://msdn.microsoft.com/ja-jp/library/ms229064.aspx</Url>
-    <Resolution>Exception を継承する [{0}] に Serializable 属性を付与してください。</Resolution>
+    <Resolution>Exception を継承する型 '{0}' に Serializable 属性を付与してください。</Resolution>
     <MessageLevel Certainty="95">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>
   </Rule>
@@ -16,7 +16,7 @@
     <Owner>munyabe</Owner>
     <Email></Email>
     <Url></Url>
-    <Resolution>[{0}#{1}] を readonly にしてください。</Resolution>
+    <Resolution>フィールド '{0}#{1}' を readonly にしてください。</Resolution>
     <MessageLevel Certainty="75">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>
   </Rule>
@@ -26,7 +26,7 @@
     <Owner>munyabe</Owner>
     <Email></Email>
     <Url></Url>
-    <Resolution>初期化しないでください。</Resolution>
+    <Resolution>デフォルト値で初期化しないでください。</Resolution>
     <MessageLevel Certainty="75">Warning</MessageLevel>
     <FixCategories>NonBreaking</FixCategories>
   </Rule>
