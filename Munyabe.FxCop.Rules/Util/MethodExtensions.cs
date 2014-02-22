@@ -1,4 +1,5 @@
-﻿using Microsoft.FxCop.Sdk;
+﻿using System;
+using Microsoft.FxCop.Sdk;
 
 namespace Munyabe.FxCop.Util
 {
@@ -60,7 +61,7 @@ namespace Munyabe.FxCop.Util
             Guard.ArgumentNotNull(method, "method");
 
             var name = method.Name.Name;
-            return name.StartsWith("get_") || name.StartsWith("set_");
+            return name.StartsWith("get_", StringComparison.Ordinal) || name.StartsWith("set_", StringComparison.Ordinal);
         }
 
         /// <summary>

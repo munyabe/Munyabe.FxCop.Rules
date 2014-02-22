@@ -35,7 +35,7 @@ namespace Munyabe.FxCop
         /// <summary>
         /// 指定のソースコードの情報を設定した<see cref="Problem"/>を作成します。
         /// </summary>
-        protected Problem CreateProblem(Resolution resolution, Node node)
+        private static Problem CreateProblem(Resolution resolution, Node node)
         {
             return new Problem(resolution)
             {

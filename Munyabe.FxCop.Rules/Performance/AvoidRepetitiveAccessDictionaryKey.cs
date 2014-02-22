@@ -26,7 +26,7 @@ namespace Munyabe.FxCop.Performance
         /// <inheritdoc />
         protected override bool IsSecondTargetMethodCall(MethodCall call)
         {
-            return call.IsCall(SystemMembers.IDictionary_GetIndexer);
+            return call.IsCall(SystemMembers.IDictionary_Indexer.Getter);
         }
     }
 }

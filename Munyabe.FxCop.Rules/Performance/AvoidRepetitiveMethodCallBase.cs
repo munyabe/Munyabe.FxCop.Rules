@@ -13,7 +13,7 @@ namespace Munyabe.FxCop.Performance
         /// <summary>
         /// <see cref="Enumerable.Any{T}(IEnumerable{T})"/>が呼び出されたノードです。
         /// </summary>
-        private HashSet<Node> _calledNodes = new HashSet<Node>();
+        private readonly HashSet<Node> _calledNodes = new HashSet<Node>();
 
         /// <summary>
         /// インスタンスを初期化します。

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.FxCop.Sdk;
 using Munyabe.FxCop.Util;
@@ -107,7 +108,7 @@ namespace Munyabe.FxCop.Maintainability
 
             // MEMO : オブジェクト初期化子
             var local = memberBinding.TargetObject as Local;
-            if (local != null && local.Name.Name.StartsWith("<>g__initLocal"))
+            if (local != null && local.Name.Name.StartsWith("<>g__initLocal", StringComparison.Ordinal))
             {
                 return field;
             }
@@ -120,7 +121,7 @@ namespace Munyabe.FxCop.Maintainability
         /// </summary>
         private static bool IsClosure(TypeNode type)
         {
-            return type.Name.Name.StartsWith("<>c__DisplayClass") && type.IsPrivate && type.IsStatic;
+            return type.Name.Name.StartsWith("<>c__DisplayClass", StringComparison.Ordinal) && type.IsPrivate && type.IsStatic;
         }
 
         /// <summary>
@@ -152,7 +153,7 @@ namespace Munyabe.FxCop.Maintainability
         /// </summary>
         private static bool IsLambdaCache(Field field)
         {
-            return field.Name.Name.StartsWith("CS$<>9__") && field.Type.IsAssignableTo(FrameworkTypes.Delegate);
+            return field.Name.Name.StartsWith("CS$<>9__", StringComparison.Ordinal) && field.Type.IsAssignableTo(FrameworkTypes.Delegate);
         }
 
         /// <summary>

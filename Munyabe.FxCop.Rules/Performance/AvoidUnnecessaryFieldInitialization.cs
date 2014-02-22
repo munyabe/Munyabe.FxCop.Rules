@@ -134,7 +134,7 @@ namespace Munyabe.FxCop.Performance
         private static bool IsLocalLambdaAssignment(AssignmentStatement statement)
         {
             var local = statement.Target as Local;
-            return local != null && local.Name.Name.StartsWith("CS$<>9__");
+            return local != null && local.Name.Name.StartsWith("CS$<>9__", StringComparison.Ordinal);
         }
     }
 }

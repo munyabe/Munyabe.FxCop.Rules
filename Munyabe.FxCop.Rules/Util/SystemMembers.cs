@@ -41,11 +41,10 @@ namespace Munyabe.FxCop.Util
             .GetMethod(Identifier.For("ContainsKey"), FrameworkTypes.GenericIDictionary.TemplateParameters[0]);
 
         /// <summary>
-        /// <see cref="IDictionary{T1, T2}"/>のインデクサーで取得するメソッドです。
+        /// <see cref="IDictionary{T1, T2}"/>のインデクサーです。
         /// </summary>
-        public static Method IDictionary_GetIndexer = FrameworkTypes.GenericIDictionary
-            .GetProperty(Identifier.For("Item"), FrameworkTypes.GenericIDictionary.TemplateParameters[0])
-            .Getter;
+        public static PropertyNode IDictionary_Indexer = FrameworkTypes.GenericIDictionary
+            .GetProperty(Identifier.For("Item"), FrameworkTypes.GenericIDictionary.TemplateParameters[0]);
 
         /// <summary>
         /// <see cref="IEnumerable{T}"/>のパラメーターのみ取る<see cref="Enumerable"/>のメソッドを取得します。

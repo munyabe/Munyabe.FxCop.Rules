@@ -66,7 +66,7 @@ namespace Munyabe.FxCop.Performance
         /// <summary>
         /// 演算子の両辺が<see cref="Enumerable.Count{T}(IEnumerable{T})"/>の呼び出しと0であるかどうかを判定します。
         /// </summary>
-        private bool IsCountAndZeroOperation(BinaryExpression expression)
+        private static bool IsCountAndZeroOperation(BinaryExpression expression)
         {
             if (expression.Operand1.IsInt32Literal(0))
             {
