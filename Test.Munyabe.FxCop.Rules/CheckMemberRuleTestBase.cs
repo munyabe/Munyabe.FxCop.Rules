@@ -20,17 +20,17 @@ namespace Test.Munyabe.FxCop.Rules
         /// <param name="memberName">解析するメンバー名</param>
         protected void AssertIsSatisfied(string memberName)
         {
-            AssertIsSatisfiedInternal(GetType(), memberName);
+            AssertIsSatisfied(GetType(), memberName);
         }
 
         /// <summary>
         /// 解析するメンバーがルールを満たしていることを検証します。
         /// </summary>
-        /// <typeparam name="T">解析する型</typeparam>
+        /// <param name="type">解析する型</param>
         /// <param name="memberName">解析するメンバー名</param>
-        protected void AssertIsSatisfied<T>(string memberName)
+        protected void AssertIsSatisfied(Type type, string memberName)
         {
-            AssertIsSatisfiedInternal(typeof(T), memberName);
+            Assert.AreEqual(0, GetIssues(type, memberName).Length, "The '{0}' includes violation.", memberName);
         }
 
         /// <summary>
@@ -45,11 +45,11 @@ namespace Test.Munyabe.FxCop.Rules
         /// <summary>
         /// 解析するメンバーに違反が1つあることを検証します。
         /// </summary>
-        /// <typeparam name="T">解析する型</typeparam>
+        /// <param name="type">解析する型</param>
         /// <param name="memberName">解析するメンバー名</param>
-        protected void AssertIsViolated<T>(string memberName)
+        protected void AssertIsViolated(Type type, string memberName)
         {
-            AssertIsViolated<T>(memberName, 1);
+            AssertIsViolated(type, memberName, 1);
         }
 
         /// <summary>
@@ -59,18 +59,18 @@ namespace Test.Munyabe.FxCop.Rules
         /// <param name="expectedCount">期待する違反の数</param>
         protected void AssertIsViolated(string memberName, int expectedCount)
         {
-            AssertIsViolatedInternal(GetType(), memberName, expectedCount);
+            AssertIsViolated(GetType(), memberName, expectedCount);
         }
 
         /// <summary>
         /// 解析するメンバーに指定の数の違反があることを検証します。
         /// </summary>
-        /// <typeparam name="T">解析する型</typeparam>
+        /// <param name="type">解析する型</param>
         /// <param name="memberName">解析するメンバー名</param>
         /// <param name="expectedCount">期待する違反の数</param>
-        protected void AssertIsViolated<T>(string memberName, int expectedCount)
+        protected void AssertIsViolated(Type type, string memberName, int expectedCount)
         {
-            AssertIsViolatedInternal(typeof(T), memberName, expectedCount);
+            Assert.AreEqual(expectedCount, GetIssues(type, memberName).Length);
         }
 
         /// <summary>
@@ -80,18 +80,21 @@ namespace Test.Munyabe.FxCop.Rules
         /// <param name="resolutionName">違反の原因名</param>
         protected void AssertIsViolated(string memberName, string resolutionName)
         {
-            AssertIsViolatedInternal(GetType(), memberName, resolutionName);
+            AssertIsViolated(GetType(), memberName, resolutionName);
         }
 
         /// <summary>
         /// 解析するメンバーに指定の原因の違反が1つあることを検証します。
         /// </summary>
-        /// <typeparam name="T">解析する型</typeparam>
+        /// <param name="type">解析する型</param>
         /// <param name="memberName">解析するメンバー名</param>
         /// <param name="resolutionName">違反の原因名</param>
-        protected void AssertIsViolated<T>(string memberName, string resolutionName)
+        protected void AssertIsViolated(Type type, string memberName, string resolutionName)
         {
-            AssertIsViolatedInternal(typeof(T), memberName, resolutionName);
+            var issues = GetIssues(type, memberName);
+
+            Assert.AreEqual(1, issues.Length);
+            Assert.AreEqual(resolutionName, issues[0].Attribute("Name").Value);
         }
 
         /// <summary>
@@ -106,11 +109,11 @@ namespace Test.Munyabe.FxCop.Rules
         /// <summary>
         /// 違反を検出できないことを確認します。
         /// </summary>
-        /// <typeparam name="T">解析する型</typeparam>
+        /// <param name="type">解析する型</param>
         /// <param name="memberName">解析するメンバー名</param>
-        protected void AssertIsNotDetectable<T>(string memberName)
+        protected void AssertIsNotDetectable(Type type, string memberName)
         {
-            AssertIsSatisfied<T>(memberName);
+            AssertIsSatisfied(type, memberName);
         }
 
         /// <summary>
@@ -135,33 +138,6 @@ namespace Test.Munyabe.FxCop.Rules
                         .FirstOrDefault();
                 })
                 .ToArray();
-        }
-
-        /// <summary>
-        /// 解析するメンバーがルールを満たしていることを検証する内部メソッドです。
-        /// </summary>
-        private void AssertIsSatisfiedInternal(Type type, string memberName)
-        {
-            Assert.AreEqual(0, GetIssues(type, memberName).Length, "The '{0}' includes violation.", memberName);
-        }
-
-        /// <summary>
-        /// 解析するメンバーに指定の数の違反があることを検証する内部メソッドです。
-        /// </summary>
-        private void AssertIsViolatedInternal(Type type, string memberName, int expectedCount)
-        {
-            Assert.AreEqual(expectedCount, GetIssues(type, memberName).Length);
-        }
-
-        /// <summary>
-        /// 解析するメンバーに指定の原因の違反が1つあるあることを検証する内部メソッドです。
-        /// </summary>
-        private void AssertIsViolatedInternal(Type type, string memberName, string resolutionName)
-        {
-            var issues = GetIssues(type, memberName);
-
-            Assert.AreEqual(1, issues.Length);
-            Assert.AreEqual(resolutionName, issues[0].Attribute("Name").Value);
         }
     }
 }

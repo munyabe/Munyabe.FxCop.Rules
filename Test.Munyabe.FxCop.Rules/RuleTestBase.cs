@@ -35,7 +35,7 @@ namespace Test.Munyabe.FxCop.Rules
         /// <summary>
         /// インスタンスを初期化します。
         /// </summary>
-        public RuleTestBase()
+        protected RuleTestBase()
         {
             Rule = new TRule();
         }

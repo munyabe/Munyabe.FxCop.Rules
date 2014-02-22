@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Xml.Linq;
 using Microsoft.FxCop.Sdk;
@@ -16,40 +16,40 @@ namespace Test.Munyabe.FxCop.Rules
         /// <summary>
         /// 解析する型がルールを満たしていることを検証します。
         /// </summary>
-        /// <typeparam name="T">解析する型</typeparam>
-        protected void AssertIsSatisfied<T>()
+        /// <param name="type">解析する型</param>
+        protected void AssertIsSatisfied(Type type)
         {
-            Assert.AreEqual(0, GetIssues<T>().Length, "The '{0}' is violated.", typeof(T).Name);
+            Assert.AreEqual(0, GetIssues(type).Length, "The '{0}' is violated.", type.Name);
         }
 
         /// <summary>
         /// 解析する型に違反が1つあることを検証します。
         /// </summary>
-        /// <typeparam name="T">解析する型</typeparam>
-        protected void AssertIsViolated<T>()
+        /// <param name="type">解析する型</param>
+        protected void AssertIsViolated(Type type)
         {
-            AssertIsViolated<T>(1);
+            AssertIsViolated(type, 1);
         }
 
         /// <summary>
         /// 解析する型に指定の数の違反があることを検証します。
         /// </summary>
-        /// <typeparam name="T">解析する型</typeparam>
+        /// <param name="type">解析する型</param>
         /// <param name="expectedCount">期待する違反の数</param>
-        protected void AssertIsViolated<T>(int expectedCount)
+        protected void AssertIsViolated(Type type, int expectedCount)
         {
-            Assert.AreEqual(expectedCount, GetIssues<T>().Count());
+            Assert.AreEqual(expectedCount, GetIssues(type).Length);
         }
 
         /// <summary>
         /// 解析する型に指定の原因の違反が1つあることを検証します。
         /// </summary>
-        /// <typeparam name="T">解析する型</typeparam>
+        /// <param name="type">解析する型</param>
         /// <param name="memberName">解析する型</param>
         /// <param name="resolutionName">違反の原因名</param>
-        protected void AssertIsViolated<T>(string resolutionName)
+        protected void AssertIsViolated(Type type, string resolutionName)
         {
-            var issues = GetIssues<T>().ToArray();
+            var issues = GetIssues(type).ToArray();
 
             Assert.AreEqual(1, issues.Length);
             Assert.AreEqual(resolutionName, issues[0].Attribute("Name").Value);
@@ -58,18 +58,18 @@ namespace Test.Munyabe.FxCop.Rules
         /// <summary>
         /// 違反を検出できないことを確認します。
         /// </summary>
-        /// <typeparam name="T">解析する型</typeparam>
-        protected void AssertIsNotDetectable<T>()
+        /// <param name="type">解析する型</param>
+        protected void AssertIsNotDetectable(Type type)
         {
-            AssertIsSatisfied<T>();
+            AssertIsSatisfied(type);
         }
 
         /// <summary>
         /// 解析結果からルール違反を示す要素を取得します。
         /// </summary>
-        private XElement[] GetIssues<T>()
+        private XElement[] GetIssues(Type type)
         {
-            return GetIssues(typeof(T), element => element).ToArray();
+            return GetIssues(type, element => element).ToArray();
         }
     }
 }

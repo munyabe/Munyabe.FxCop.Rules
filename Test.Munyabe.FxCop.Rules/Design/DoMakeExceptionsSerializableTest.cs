@@ -13,31 +13,31 @@ namespace Test.Munyabe.FxCop.Rules.Design
         [TestMethod]
         public void SerializableExceptionTest()
         {
-            AssertIsSatisfied<SerializableException>();
+            AssertIsSatisfied(typeof(SerializableException));
         }
 
         [TestMethod]
         public void AbstractExceptionTest()
         {
-            AssertIsSatisfied<AbstractException>();
+            AssertIsSatisfied(typeof(AbstractException));
         }
 
         [TestMethod]
         public void NotExceptionTest()
         {
-            AssertIsSatisfied<NotException>();
+            AssertIsSatisfied(typeof(NotException));
         }
 
         [TestMethod]
         public void UnserializableExceptionTest()
         {
-            AssertIsViolated<UnserializableException>();
+            AssertIsViolated(typeof(UnserializableException));
         }
 
         [TestMethod]
         public void ConcreteExceptionTest()
         {
-            AssertIsViolated<ConcreteException>();
+            AssertIsViolated(typeof(ConcreteException));
         }
 
         [Serializable]

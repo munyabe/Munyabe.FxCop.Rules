@@ -15,187 +15,187 @@ namespace Test.Munyabe.FxCop.Rules.Maintainability
         [TestMethod]
         public void ReadonlyFieldTest()
         {
-            AssertIsSatisfied<ReadonlyField>();
+            AssertIsSatisfied(typeof(ReadonlyField));
         }
 
         [TestMethod]
         public void SetFieldTest()
         {
-            AssertIsSatisfied<SetField>();
+            AssertIsSatisfied(typeof(SetField));
         }
 
         [TestMethod]
         public void StaticFieldTest()
         {
-            AssertIsSatisfied<StaticField>();
+            AssertIsSatisfied(typeof(StaticField));
         }
 
         [TestMethod]
         public void ConstMemberTest()
         {
-            AssertIsSatisfied<ConstMember>();
+            AssertIsSatisfied(typeof(ConstMember));
         }
 
         [TestMethod]
         public void PublicPropertyTest()
         {
-            AssertIsSatisfied<PublicProperty>();
+            AssertIsSatisfied(typeof(PublicProperty));
         }
 
         [TestMethod]
         public void PrivateSetPropertyTest()
         {
-            AssertIsSatisfied<PrivateSetProperty>();
+            AssertIsSatisfied(typeof(PrivateSetProperty));
         }
 
         [TestMethod]
         public void GenericClassTest()
         {
-            AssertIsSatisfied<GenericClass<string>>();
+            AssertIsSatisfied(typeof(GenericClass<string>));
         }
 
         [TestMethod]
         public void AbstractClassTest()
         {
-            AssertIsSatisfied<AbstractClass>();
+            AssertIsSatisfied(typeof(AbstractClass));
         }
 
         [TestMethod]
         public void ParcialClassTest()
         {
-            AssertIsSatisfied<ParcialClass>();
+            AssertIsSatisfied(typeof(ParcialClass));
         }
 
         [TestMethod]
         public void CanNotMarkReadonlyFieldTest()
         {
-            AssertIsSatisfied<CanNotMarkReadonlyField>();
+            AssertIsSatisfied(typeof(CanNotMarkReadonlyField));
         }
 
         [TestMethod]
         public void IncrementOperatorTest()
         {
-            AssertIsSatisfied<IncrementOperator>();
+            AssertIsSatisfied(typeof(IncrementOperator));
         }
 
         [TestMethod]
         public void TernaryExpressionTest()
         {
-            AssertIsSatisfied<TernaryExpression>();
+            AssertIsSatisfied(typeof(TernaryExpression));
         }
 
         [TestMethod]
         public void NullTernaryExpressionTest()
         {
-            AssertIsSatisfied<NullTernaryExpression>();
+            AssertIsSatisfied(typeof(NullTernaryExpression));
         }
 
         [TestMethod]
         public void ObjectInitializerTest()
         {
-            AssertIsSatisfied<ObjectInitializer>();
+            AssertIsSatisfied(typeof(ObjectInitializer));
         }
 
         [TestMethod]
         public void RefParamMethodTest()
         {
-            AssertIsSatisfied<RefParamMethod>();
+            AssertIsSatisfied(typeof(RefParamMethod));
         }
 
         [TestMethod]
         public void RefParamNotVoidMethodTest()
         {
-            AssertIsSatisfied<RefParamNotVoidMethod>();
+            AssertIsSatisfied(typeof(RefParamNotVoidMethod));
         }
 
         [TestMethod]
         public void EventTest()
         {
-            AssertIsSatisfied<Event>();
+            AssertIsSatisfied(typeof(Event));
         }
 
         [TestMethod]
         public void LambdaCacheTest()
         {
-            AssertIsSatisfied<LambdaCache>();
+            AssertIsSatisfied(typeof(LambdaCache));
         }
 
         [TestMethod]
         public void SetByLambdaTest()
         {
-            AssertIsSatisfied<SetByLambda>();
+            AssertIsSatisfied(typeof(SetByLambda));
         }
 
         [TestMethod]
         public void DelegateClosureTest()
         {
-            AssertIsSatisfied<DelegateClosure>();
+            AssertIsSatisfied(typeof(DelegateClosure));
         }
 
         [TestMethod]
         public void LambdaClosureTest()
         {
-            AssertIsSatisfied<LambdaClosure>();
+            AssertIsSatisfied(typeof(LambdaClosure));
         }
 
         [TestMethod]
         public void SetAndYieldReturnTest()
         {
-            AssertIsSatisfied<SetAndYieldReturn>();
+            AssertIsSatisfied(typeof(SetAndYieldReturn));
         }
 
         [TestMethod]
         public void InitializedFieldTest()
         {
-            AssertIsViolated<InitializedField>();
+            AssertIsViolated(typeof(InitializedField));
         }
 
         [TestMethod]
         public void ConstructorInitializedFieldTest()
         {
-            AssertIsViolated<ConstructorInitializedField>();
+            AssertIsViolated(typeof(ConstructorInitializedField));
         }
 
         [TestMethod]
         public void NotSetFieldTest()
         {
-            AssertIsViolated<NotSetField>();
+            AssertIsViolated(typeof(NotSetField));
         }
 
         [TestMethod]
         public void NotSetStaticFieldTest()
         {
-            AssertIsViolated<NotSetStaticField>();
+            AssertIsViolated(typeof(NotSetStaticField));
         }
 
         [TestMethod]
         public void NotSetGenericClassTest()
         {
-            AssertIsViolated<NotSetGenericClass<string>>();
+            AssertIsViolated(typeof(NotSetGenericClass<string>));
         }
 
         [TestMethod]
         public void DelegateFieldTest()
         {
-            AssertIsViolated<DelegateField>();
+            AssertIsViolated(typeof(DelegateField));
         }
 
         [TestMethod]
         public void GetByLambdaTest()
         {
-            AssertIsViolated<GetByLambda>();
+            AssertIsViolated(typeof(GetByLambda));
         }
 
         [TestMethod]
         public void ConstructorTernaryExpressionTest()
         {
-            AssertIsNotDetectable<ConstructorTernaryExpression>();
+            AssertIsNotDetectable(typeof(ConstructorTernaryExpression));
         }
 
         [TestMethod]
         public void YieldReturnTest()
         {
-            AssertIsViolated<YieldReturn>();
+            AssertIsViolated(typeof(YieldReturn));
         }
 
         public class ReadonlyField

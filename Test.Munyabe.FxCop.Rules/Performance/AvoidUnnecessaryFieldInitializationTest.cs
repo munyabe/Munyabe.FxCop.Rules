@@ -13,61 +13,61 @@ namespace Test.Munyabe.FxCop.Rules.Performance
         [TestMethod]
         public void FieldInitializeTest()
         {
-            AssertIsSatisfied<FieldInitialize>(".ctor");
+            AssertIsSatisfied(typeof(FieldInitialize), ".ctor");
         }
 
         [TestMethod]
         public void StaticFieldInitializeTest()
         {
-            AssertIsSatisfied<StaticFieldInitialize>(".cctor");
+            AssertIsSatisfied(typeof(StaticFieldInitialize), ".cctor");
         }
 
         [TestMethod]
         public void ConstructorInitializeTest()
         {
-            AssertIsSatisfied<ConstructorInitialize>(".ctor");
+            AssertIsSatisfied(typeof(ConstructorInitialize), ".ctor");
         }
 
         [TestMethod]
         public void StaticConstructorInitializeTest()
         {
-            AssertIsSatisfied<StaticConstructorInitialize>(".cctor");
+            AssertIsSatisfied(typeof(StaticConstructorInitialize), ".cctor");
         }
 
         [TestMethod]
         public void NotInitializeTest()
         {
-            AssertIsSatisfied<NotInitialize>(".ctor");
+            AssertIsSatisfied(typeof(NotInitialize), ".ctor");
         }
 
         [TestMethod]
         public void OtherInitializeTest()
         {
-            AssertIsSatisfied<OtherInitialize>(".ctor");
+            AssertIsSatisfied(typeof(OtherInitialize), ".ctor");
         }
 
         [TestMethod]
         public void SetByLambdaTest()
         {
-            AssertIsSatisfied<SetByLambda>(".ctor");
+            AssertIsSatisfied(typeof(SetByLambda), ".ctor");
         }
 
         [TestMethod]
         public void UnnecessaryFieldInitializeTest()
         {
-            AssertIsViolated<UnnecessaryFieldInitialize>(".ctor", 18);
+            AssertIsViolated(typeof(UnnecessaryFieldInitialize), ".ctor", 18);
         }
 
         [TestMethod]
         public void UnnecessaryStaticFieldInitializeTest()
         {
-            AssertIsViolated<UnnecessaryStaticFieldInitialize>(".cctor");
+            AssertIsViolated(typeof(UnnecessaryStaticFieldInitialize), ".cctor");
         }
 
         [TestMethod]
         public void UnnecessaryConstructorInitializeTest()
         {
-            AssertIsViolated<UnnecessaryConstructorInitialize>(".ctor");
+            AssertIsViolated(typeof(UnnecessaryConstructorInitialize), ".ctor");
         }
 
         public class FieldInitialize
